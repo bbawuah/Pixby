@@ -2,7 +2,7 @@
 
 ![mockup](https://github.com/joannlap/Pixby/blob/master/wiki_img/mockups.png)
 
-## Jo-Ann Like/match
+### Jo-Ann: Like/match
 
 > "When I am looking for a date, I want to like a person based on their baby photo, so when there's a match I can tell if the baby photo relates to how my match looks at this point in time."
 

@@ -66,4 +66,5 @@ Insert this command to start the server!
 
 ### 0.1
 
-Readme edited to tryout mergeconflicts
+Readme edited to tryout mergeconflicts.
+Readme edited to tryout pull Request

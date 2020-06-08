@@ -4,7 +4,10 @@
 
 
 Hi!
-Welcome to my project for Blok-tech. The concept is based on the generic idea of a dating app, but with a twist. On Pixby, users are only allowed to use baby pictures. That way, you get to see their natural faces without any applied filters/edits. Biases are based on the baby pictures :).
+Welcome to my project for Blok-tech. The concept is based on the generic idea of a dating app, but with a twist. On Pixby, users are only allowed to use baby pictures. That way, you get to see their natural faces without any applied filters/edits. Biases are based on the baby pictures :). 
+
+## Features
+* Wanneer ik inlog en op zoek ben naar een match, wil ik zoeken op interesses, zodat ik kan zien wie een mogelijk match is
 
 ## Install the feature
 

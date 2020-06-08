@@ -3,26 +3,30 @@
 ![mockup](https://github.com/joannlap/Pixby/blob/master/wiki_img/mockups.png)
 
 <<<<<<< HEAD
+
 ### Jo-Ann: Like/match
 
-> "When I am looking for a date, I want to like a person based on their baby photo, so when there's a match I can tell if the baby photo relates to how my match looks at this point in time."
-=======
+> # "When I am looking for a date, I want to like a person based on their baby photo, so when there's a match I can tell if the baby photo relates to how my match looks at this point in time."
+
 ### Chat feature
 
 Gebruikers kunnen in de chat feature elkaar beter leren kennen door over hun interesses of over actuele topics te praten.
->>>>>>> 7bdc1874f8ab0c03300dd3bb74e984ac7227e510
+
+> > > > > > > 7bdc1874f8ab0c03300dd3bb74e984ac7227e510
 
 test...
 
 #### test test test
+
 heyo
 
 Hi!
-Welcome to my project for Blok-tech. The concept is based on the generic idea of a dating app, but with a twist. On Pixby, users are only allowed to use baby pictures. That way, you get to see their natural faces without any applied filters/edits. Biases are based on the baby pictures :). 
+Welcome to my project for Blok-tech. The concept is based on the generic idea of a dating app, but with a twist. On Pixby, users are only allowed to use baby pictures. That way, you get to see their natural faces without any applied filters/edits. Biases are based on the baby pictures :).
 
 ## Features
-* Wanneer ik inlog en op zoek ben naar een match, wil ik zoeken op interesses, zodat ik kan zien wie een mogelijk match is
-TEST PULL REQUEST TEST TEST TEST
+
+- Wanneer ik inlog en op zoek ben naar een match, wil ik zoeken op interesses, zodat ik kan zien wie een mogelijk match is
+  TEST PULL REQUEST TEST TEST TEST
 
 ## Install the feature
 

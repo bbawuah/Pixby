@@ -2,6 +2,9 @@
 
 ![mockup](https://github.com/joannlap/Pixby/blob/master/wiki_img/mockups.png)
 
+## Jo-Ann Like/match
+
+> "When I am looking for a date, I want to like a person based on their baby photo, so when there's a match I can tell if the baby photo relates to how my match looks at this point in time."
 
 Hi!
 Welcome to my project for Blok-tech. The concept is based on the generic idea of a dating app, but with a twist. On Pixby, users are only allowed to use baby pictures. That way, you get to see their natural faces without any applied filters/edits. Biases are based on the baby pictures :).

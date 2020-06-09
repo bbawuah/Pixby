@@ -33,11 +33,19 @@ app
     saveUninitialized: true,
     resave: false,
     secure: true,
+  }))
+  .use(bodyParser.urlencoded({
+    extended: true
   }));
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
 hbs.registerPartials(path.join(__dirname, '/views/partials'));
+
+app
+  .get('/signin', signIn)
+  .post('/loading', loadSignIn)
+  .get('/', home)
+  .post('/match', match)
+  .post('/profile', profile)
+  .get('/*', error);
 
 
 // DATABASE CONNECTION
@@ -53,7 +61,7 @@ hbs.registerPartials(path.join(__dirname, '/views/partials'));
 // });
 
 // inlogpagina waar alle session gebruikers worden weergeven
-app.get('/signin', async (req, res, next) => {
+async function signIn(req, res, next) {
   try {
     const fromDatabase = await usersList.find().toArray();
     res.render('signin', {
@@ -63,10 +71,10 @@ app.get('/signin', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+};
 
 // hier wordt je doorgestuurd naar de indexpagina
-app.post('/loading', async (req, res, next) => {
+async function loadSignIn(req, res, next) {
   try {
     req.session.name = req.body.name;
     console.log(req.session.name);
@@ -74,10 +82,10 @@ app.post('/loading', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+};
 
 // indexpagina
-app.get('/', async (req, res, next) => {
+async function home(req, res, next) {
   try {
     // elke keer de server opnieuw start
     // redirect je naar inlogpagina
@@ -116,10 +124,10 @@ app.get('/', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+};
 
 // gelikete user wordt doorgestuurd naar match pagina
-app.post('/match', async (req, res, next) => {
+async function match(req, res, next) {
   try {
     const signedUser = await usersList.find({
       name: req.session.name
@@ -171,10 +179,10 @@ app.post('/match', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+};
 
 // profile pagina van de gematchte baby wordt revealed naar de volwassen jochie.
-app.post('/profile', async (req, res) => {
+async function profile(req, res) {
   try {
     const signedUser = await usersList.find({
       name: req.session.name
@@ -195,12 +203,12 @@ app.post('/profile', async (req, res) => {
   } catch (err) {
     res.status(404).send(err);
   }
-});
+};
 
 // rendert error pagina
-app.get('/*', (req, res) => {
+function error(req, res) {
   res.status(404).render('error');
-});
+};
 
 // Application running on port...
 app.listen(port, () => console.log(`app draait op port ${port}!!`));

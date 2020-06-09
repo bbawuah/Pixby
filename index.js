@@ -6,11 +6,20 @@ const app = express(); // opstarten van express applicatie
 const port = 4000;
 const path = require('path');
 require('dotenv').config();
+
+const url = process.env.MONGO_URL;
+console.log(url);
+
+require('./src/db/mongoose.js');
+
 const {
   MongoClient
 } = require('mongodb');
+
 const session = require('express-session');
-const url = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASS}@${process.env.DB_URL}`;
+
+
+
 let db = null;
 let usersList = null;
 
@@ -40,16 +49,16 @@ app
 
 
 // DATABASE CONNECTION
-MongoClient.connect(url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}, (err, client) => {
-  if (err) {
-    console.log('Unable to connect to database');
-  }
-  db = client.db(process.env.DB_NAME);
-  usersList = db.collection('users');
-});
+// MongoClient.connect(url, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// }, (err, client) => {
+//   if (err) {
+//     console.log('Unable to connect to database');
+//   }
+//   db = client.db(process.env.DB_NAME);
+//   usersList = db.collection('users');
+// });
 
 // inlogpagina waar alle session gebruikers worden weergeven
 async function signIn(req, res, next) {

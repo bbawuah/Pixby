@@ -126,14 +126,41 @@ async function home(req, res, next) {
   }
 };
 
+// Als je iemand liked of disliked wordt het hele object
+// van de gebruiker gepusht naar je liked of disliked array
+function updateLikedUsers(req, res) {
+  if (req.body.like) {
+    usersList.updateOne({
+      name: signedUser[0].name,
+    }, {
+      $push: {
+        liked: req.body.like,
+      },
+    });
+    return true;
+  }
+};
+
+function updateDislikedUsers(req, res) {
+  if (req.body.dislike) {
+    usersList.updateOne({
+      name: signedUser[0].name,
+    }, {
+      $push: {
+        liked: req.body.dislike,
+      },
+    });
+    return false;
+  }
+};
+
 // gelikete user wordt doorgestuurd naar match pagina
 async function match(req, res, next) {
   try {
     const signedUser = await usersList.find({
       name: req.session.name
     }).toArray();
-    // Als je iemand liked of disliked wordt het hele object
-    // van de gebruiker gepusht naar je liked of disliked array
+
     const updateLikedUsers = () => {
       if (req.body.like) {
         usersList.updateOne({

@@ -161,30 +161,6 @@ async function match(req, res, next) {
       name: req.session.name
     }).toArray();
 
-    const updateLikedUsers = () => {
-      if (req.body.like) {
-        usersList.updateOne({
-          name: signedUser[0].name,
-        }, {
-          $push: {
-            liked: req.body.like,
-          },
-        });
-        return true;
-      }
-    };
-    const updateDislikedUsers = () => {
-      if (req.body.dislike) {
-        usersList.updateOne({
-          name: signedUser[0].name,
-        }, {
-          $push: {
-            disliked: req.body.dislike,
-          },
-        });
-        return false;
-      }
-    };
     // het hele object van de gematchte user wordt uit de database gehaald
     // zodat je alleen de user die je hebt geliked/matched op de match pagina te zien krijgt
     const match = await usersList.find({

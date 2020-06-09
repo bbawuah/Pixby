@@ -18,7 +18,7 @@
                 "allowTemplateLiterals": true
             }
         ],
-        "semi": ["warn", "always"],
+        "semi": [2, "never"],
         "comma-dangle": ["off"],
         "indent": ["off"],
         "no-console": ["off"],

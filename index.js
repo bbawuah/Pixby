@@ -31,6 +31,7 @@ app
       extended: true,
     })
   );
+  
 hbs.registerPartials(path.join(__dirname, "/views/partials"));
 
 app

@@ -16,11 +16,10 @@ const userJSON = require("./pixby-users.json");
 const User = require("./src/models/users");
 
 // Example of how to create CRUD operations
-( async () => {
-    const users = await User.find({}); //User refers to our User model. We don't have to use db.collection anymore
-    console.log(users);
-  }
-)();
+(async () => {
+  const users = await User.find({}); //User refers to our User model. We don't have to use db.collection anymore
+  console.log(users);
+})();
 
 // middleware
 app
@@ -83,8 +82,7 @@ async function home(req, res, next) {
     // alle gebruikers uit de database gehaald zonder signedUser mee te nemen
     const allBabies = await usersList
       .find({
-        $and: [
-          {
+        $and: [{
             name: {
               $ne: signedUser[0].name,
             },

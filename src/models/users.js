@@ -30,16 +30,31 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   imgOld: {
-      type: String,
+    type: String,
   },
   location: {
-      type: String,
+    type: String,
   },
   profession: {
-      type: String,
+    type: String,
   },
-  about: {
+  interest: [
+    {
       type: String,
+    },
+  ],
+  liked: [
+    {
+      type: String,
+    },
+  ],
+  disliked: [
+    {
+      type: String,
+    },
+  ],
+  about: {
+    type: String,
   },
   password: {
     type: String,

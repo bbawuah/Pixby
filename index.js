@@ -10,33 +10,37 @@ const path = require("path");
 // Load in mongoose and make connection to database
 require("./src/db/mongoose.js");
 
+const userJSON = require("./pixby-users.json");
+
 // Load in model
 const User = require("./src/models/users");
 
 // Example of how to create CRUD operations
-(async () => {
-  const users = await User.find({}); //User refers to our User model. We don't have to use db.collection anymore
-  console.log(users);
-})();
+( async () => {
+    const users = await User.find({}); //User refers to our User model. We don't have to use db.collection anymore
+    console.log(users);
+  }
+)();
 
 // middleware
 app
-  .set('view engine', 'hbs')
-  .set('views', 'views')
-  .use(express.static('public')) // gebruikt deze map (public) om html bestanden te serveren
-  .use(bodyParser.urlencoded({
-    extended: true
-  }));
-hbs.registerPartials(path.join(__dirname, '/views/partials'));
+  .set("view engine", "hbs")
+  .set("views", "views")
+  .use(express.static("public")) // gebruikt deze map (public) om html bestanden te serveren
+  .use(
+    bodyParser.urlencoded({
+      extended: true,
+    })
+  );
+hbs.registerPartials(path.join(__dirname, "/views/partials"));
 
 app
-  .get('/signin', signIn)
-  .post('/loading', loadSignIn)
-  .get('/', home)
-  .post('/match', match)
-  .post('/profile', profile)
-  .get('/*', error);
-
+  .get("/signin", signIn)
+  .post("/loading", loadSignIn)
+  .get("/", home)
+  .post("/match", match)
+  .post("/profile", profile)
+  .get("/*", error);
 
 // inlogpagina waar alle session gebruikers worden weergeven
 async function signIn(req, res, next) {
@@ -49,7 +53,7 @@ async function signIn(req, res, next) {
   } catch (error) {
     next(error);
   }
-};
+}
 
 // hier wordt je doorgestuurd naar de indexpagina
 async function loadSignIn(req, res, next) {
@@ -60,7 +64,7 @@ async function loadSignIn(req, res, next) {
   } catch (error) {
     next(error);
   }
-};
+}
 
 // indexpagina
 async function home(req, res, next) {
@@ -110,7 +114,7 @@ async function home(req, res, next) {
   } catch (error) {
     next(error);
   }
-};
+}
 
 // gelikete user wordt doorgestuurd naar match pagina
 async function match(req, res, next) {
@@ -174,7 +178,7 @@ async function match(req, res, next) {
   } catch (error) {
     next(error);
   }
-};
+}
 
 // profile pagina van de gematchte baby wordt revealed naar de volwassen jochie.
 async function profile(req, res) {
@@ -202,12 +206,12 @@ async function profile(req, res) {
   } catch (err) {
     res.status(404).send(err);
   }
-};
+}
 
 // rendert error pagina
 function error(req, res) {
-  res.status(404).render('error');
-};
+  res.status(404).render("error");
+}
 
 // Application running on port...
 app.listen(port, () => console.log(`app draait op port ${port}!!`));

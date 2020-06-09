@@ -34,7 +34,7 @@ app
   .get('/signin', signIn)
   .post('/loading', loadSignIn)
   .get('/', home)
-  .post('/match', match, updateLikedUsers, updateDislikedUsers)
+  .post('/match', match)
   .post('/profile', profile)
   .get('/*', error);
 
@@ -133,7 +133,7 @@ function updateLikedUsers(req, res) {
 };
 
 function updateDislikedUsers(req, res) {
-  if (req.body.like) {
+  if (req.body.dislike) {
     usersList.updateOne({
       name: signedUser[0].name,
     }, {
@@ -152,6 +152,30 @@ async function match(req, res, next) {
       name: req.session.name
     }).toArray();
 
+    const updateLikedUsers = () => {
+      if (req.body.like) {
+        usersList.updateOne({
+          name: signedUser[0].name,
+        }, {
+          $push: {
+            liked: req.body.like,
+          },
+        });
+        return true;
+      }
+    };
+    const updateDislikedUsers = () => {
+      if (req.body.dislike) {
+        usersList.updateOne({
+          name: signedUser[0].name,
+        }, {
+          $push: {
+            disliked: req.body.dislike,
+          },
+        });
+        return false;
+      }
+    };
     // het hele object van de gematchte user wordt uit de database gehaald
     // zodat je alleen de user die je hebt geliked/matched op de match pagina te zien krijgt
     const match = await usersList.find({

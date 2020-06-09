@@ -1,0 +1,111 @@
+[{
+
+  "name": "Collin",
+  "password": "collin123",
+  "age": 22,
+  "img": "collin.png",
+  "imgMatch": "match.png",
+  "imgOld": "bigcollin.jpg",
+  "location": "Toronto, Canada",
+  "profession": "Choreographer",
+  "about": "",
+  "interest": [
+    "Dance",
+    "Cooking",
+    "Photography",
+    "Gaming"
+  ],
+  "liked": [],
+  "disliked": []
+},{
+
+  "name": "Nathan",
+  "password": "nathan123",
+  "age": 22,
+  "img": "nathan.png",
+  "imgMatch": "match-3.png",
+  "imgOld": "bignathan.jpg",
+  "location": "Hamilton, Canada",
+  "profession": "Front-End Developer",
+  "about": "",
+  "interest": [
+    "Piano",
+    "Reading",
+    "Hiking",
+    "Programming"
+  ],
+  "liked": [],
+  "disliked": []
+},{
+  "name": "Dré",
+  "password": "dre123",
+  "age": 22,
+  "img": "dre.png",
+  "imgMatch": "match-2.png",
+  "imgOld": "bigdre.jpg",
+  "location": "Toronto, Canada",
+  "profession": "Graphic Designer",
+  "about": "",
+  "interest": [
+    "Sneakers",
+    "Beatsmaking",
+    "Fashion",
+    "Gaming"
+  ],
+  "liked": [],
+  "disliked": []
+},{
+  "name": "Cameron",
+  "password": "cameron123",
+  "age": 21,
+  "img": "cameron.png",
+  "imgMatch": "match-4.png",
+  "imgOld": "bigcameron.jpg",
+  "location": "Kitchener, Canada",
+  "profession": "Barista",
+  "about": "",
+  "interest": [
+    "Food",
+    "Violin",
+    "Chest",
+    "Skateboarding"
+  ],
+  "liked": [],
+  "disliked": []
+},{
+  "name": "Steven",
+  "password": "steven123",
+  "age": 22,
+  "img": "steven.png",
+  "imgMatch": "match-5.png",
+  "imgOld": "bigsteven.jpg",
+  "location": "Hamilton, Canada",
+  "profession": "Engineer",
+  "about": "",
+  "interest": [
+    "Astronomy",
+    "Bird watching",
+    "Cigar smoking",
+    "Fishing"
+  ],
+  "liked": [],
+  "disliked": []
+},{
+  "name": "Zac",
+  "password": "zac123",
+  "age": 23,
+  "img": "zac.png",
+  "imgMatch": "match-6.png",
+  "imgOld": "bigzac.jpg",
+  "location": "Vancouver, Canada",
+  "profession": "Photographer",
+  "about": "",
+  "interest": [
+    "Hiking",
+    "Golfing",
+    "Fencing",
+    "Boxing"
+  ],
+  "liked": [],
+  "disliked": []
+}]

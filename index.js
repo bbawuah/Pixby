@@ -6,10 +6,10 @@ const bodyParser = require("body-parser");
 const app = express(); // opstarten van express applicatie
 const port = 4000;
 const path = require("path");
-const likeAndMatch = require("./src/routes/likeAndMatch")
-const chatRoom = require("./sc/routes/chatRoom")
-const findUser = require("./src/routes/findUser")
-const profileUser = require("./src/routes/profile")
+const likeAndMatch = require("./src/routes/likeAndMatch");
+const chatRoom = require("./src/routes/chatRoom");
+const findUser = require("./src/routes/findUser");
+const profileUser = require("./src/routes/profile");
 // Load in mongoose and make connection to database
 require("./src/db/mongoose.js");
 
@@ -21,7 +21,7 @@ const User = require("./src/models/users");
 // Example of how to create CRUD operations
 (async () => {
   const users = await User.find({}); //User refers to our User model. We don't have to use db.collection anymore
-  console.log(users);
+  // console.log(users);
 })();
 
 // middleware
@@ -43,8 +43,6 @@ app
   .use("/", chatRoom)
   .use("/", findUser)
   .use("/", profileUser);
-
-
 
 // Jo-Ann's feature
 app
@@ -82,11 +80,12 @@ async function loadSignIn(req, res, next) {
 async function home(req, res, next) {
   try {
     const signedUser = await User.findOne({
-      name: 'Collin'
-    })
+      name: "Collin",
+    });
     // alle gebruikers uit de database gehaald zonder signedUser mee te nemen
     const allBabies = await User.find({
-      $and: [{
+      $and: [
+        {
           name: {
             $ne: signedUser.name,
           },
@@ -95,14 +94,14 @@ async function home(req, res, next) {
           name: {
             // array waar alle gelikete users in worden opgeslagen
             // waardoor hij niet meer zichtbaar is op de index
-            $nin: Object.values(signedUser.liked),
+            $nin: signedUser.liked,
           },
         },
         {
           name: {
             // array waar alle gelikete users in worden opgeslagen
             // waardoor hij niet meer zichtbaar is op de index
-            $nin: Object.values(signedUser.disliked),
+            $nin: signedUser.disliked,
           },
         },
       ],
@@ -119,55 +118,82 @@ async function home(req, res, next) {
 
 // Als je iemand liked of disliked wordt het hele object
 // van de gebruiker gepusht naar je liked of disliked array
-function updateLikedUsers(req, res) {
-  if (req.body) {
-    User.updateOne({
-      name: signedUser.name,
-    }, {
-      $push: {
-        liked: req.body.like,
-      },
-    });
-    return true;
-  }
-};
+async function updateLikedUsers(match, user) {
+  console.log("Deze is afgevuurd");
+  console.log(`Dit is van req ${match}`);
 
-function updateDislikedUsers(req, res) {
-  if (req.body) {
-    User.updateOne({
-      name: signedUser.name,
-    }, {
-      $push: {
-        liked: req.body.dislike,
+  try {
+    await User.updateOne(
+      {
+        name: user.name,
       },
-    });
-    return false;
+      {
+        $push: {
+          liked: match,
+        },
+      }
+    );
+    return true;
+  } catch (erooorrrr) {
+    console.log(erooorrrr);
   }
-};
+}
+
+async function updateDislikedUsers(noMatch, user) {
+  console.log("Deze is afgevuurd");
+  // console.log(`Dit is van req ${match}`);
+
+  try {
+    await User.updateOne(
+      {
+        name: user.name,
+      },
+      {
+        $push: {
+          disliked: noMatch,
+        },
+      }
+    );
+    return false;
+  } catch (ewajaaaaa) {
+    console.log(ewajaaaaa);
+  }
+}
 
 // gelikete user wordt doorgestuurd naar match pagina
 async function match(req, res, next) {
+  console.log(req.body.like);
+  console.log(req.body.dislike);
+
+  const like = req.body.like;
+  const dislike = req.body.dislike;
+
   try {
     const signedUser = await User.findOne({
-      name: 'Collin'
-    })
+      name: "Collin",
+    });
+
+    console.log(signedUser);
 
     // het hele object van de gematchte user wordt uit de database gehaald
     // zodat je alleen de user die je hebt geliked/matched op de match pagina te zien krijgt
-    const match = await User
-      .find({
-        name: req.body.like
-      });
-    console.log(req.body.like)
+    const match = await User.find({
+      name: like,
+    });
+
+    console.log(match);
+
     // updateUsers wordt aangeroepen waarbij een argument wordt meegegeven
     // als de gematchte waarde true is, dan heb je een match en wordt gerenderd naar match route
-    if (updateLikedUsers(signedUser) === true) {
+
+    
+    if (updateLikedUsers(like, signedUser)) {
       console.log(`you have a match with ${match.name} `);
       res.render("match", {
         users: match,
       });
       // als de gematchte waarde false is, wordt je teruggestuurd naar de index
-    } else if (updateDislikedUsers(signedUser) === false) {
+    } else if (updateDislikedUsers(dislike, !signedUser)) {
       console.log(`no match.`);
       res.redirect("/");
     }
@@ -180,9 +206,8 @@ async function match(req, res, next) {
 async function profile(req, res) {
   try {
     const signedUser = await User.find({
-        name: 'Collin'
-      })
-      .toArray();
+      name: "Collin",
+    }).toArray();
     const allLikedBabies = signedUser.liked;
     // zorgt voor dat de array niet telt vanaf 0
     // en die waarde wordt in likedUser meegegeven als de index
@@ -190,9 +215,8 @@ async function profile(req, res) {
     const likedUser = allLikedBabies[likedBaby];
     // hele object van de gelikete user wordt uit de database gehaald
     const showMatch = await User.find({
-        name: likedUser,
-      })
-      .toArray();
+      name: likedUser,
+    }).toArray();
     // rendert de gelikete user naar de profile pagina
     res.render("profile", {
       users: showMatch,
@@ -208,4 +232,4 @@ function error(req, res) {
 }
 
 // Application running on port...
-app.listen(port, () => console.log(`app draait op port ${port}!!`));
+app.listen(8000, () => console.log(`app draait op port ${port}!!`));

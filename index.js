@@ -6,7 +6,10 @@ const bodyParser = require("body-parser");
 const app = express(); // opstarten van express applicatie
 const port = 4000;
 const path = require("path");
-
+const likeAndMatch = require("./src/routes/likeAndMatch")
+const chatRoom = require("./sc/routes/chatRoom")
+const findUser = require("./src/routes/findUser")
+const profileUser = require("./src/routes/profile")
 // Load in mongoose and make connection to database
 require("./src/db/mongoose.js");
 
@@ -16,11 +19,10 @@ const userJSON = require("./pixby-users.json");
 const User = require("./src/models/users");
 
 // Example of how to create CRUD operations
-( async () => {
-    const users = await User.find({}); //User refers to our User model. We don't have to use db.collection anymore
-    console.log(users);
-  }
-)();
+(async () => {
+  const users = await User.find({}); //User refers to our User model. We don't have to use db.collection anymore
+  console.log(users);
+})();
 
 // middleware
 app
@@ -32,9 +34,19 @@ app
       extended: true,
     })
   );
-  
+
 hbs.registerPartials(path.join(__dirname, "/views/partials"));
 
+// mount the routes to the app
+app
+  .use("/", likeAndMatch)
+  .use("/", chatRoom)
+  .use("/", findUser)
+  .use("/", profileUser);
+
+
+
+// Jo-Ann's feature
 app
   .get("/signin", signIn)
   .post("/loading", loadSignIn)
@@ -69,41 +81,32 @@ async function loadSignIn(req, res, next) {
 // indexpagina
 async function home(req, res, next) {
   try {
-    // elke keer de server opnieuw start
-    // redirect je naar inlogpagina
-    
-
-      res.redirect("/signin");
-    // 
-    let signedUser = await User.find({
-      //  Name
-      })
-      .toArray();
+    const signedUser = await User.findOne({
+      name: 'Collin'
+    })
     // alle gebruikers uit de database gehaald zonder signedUser mee te nemen
     const allBabies = await User.find({
-        $and: [
-          {
-            name: {
-              $ne: signedUser[0].name,
-            },
+      $and: [{
+          name: {
+            $ne: signedUser.name,
           },
-          {
-            name: {
-              // array waar alle gelikete users in worden opgeslagen
-              // waardoor hij niet meer zichtbaar is op de index
-              $nin: Object.values(signedUser[0].liked),
-            },
+        },
+        {
+          name: {
+            // array waar alle gelikete users in worden opgeslagen
+            // waardoor hij niet meer zichtbaar is op de index
+            $nin: Object.values(signedUser.liked),
           },
-          {
-            name: {
-              // array waar alle gelikete users in worden opgeslagen
-              // waardoor hij niet meer zichtbaar is op de index
-              $nin: Object.values(signedUser[0].disliked),
-            },
+        },
+        {
+          name: {
+            // array waar alle gelikete users in worden opgeslagen
+            // waardoor hij niet meer zichtbaar is op de index
+            $nin: Object.values(signedUser.disliked),
           },
-        ],
-      })
-      .toArray();
+        },
+      ],
+    });
     // allBabies wordt gerendert naar de index
     res.render("index", {
       title: "home",
@@ -117,9 +120,9 @@ async function home(req, res, next) {
 // Als je iemand liked of disliked wordt het hele object
 // van de gebruiker gepusht naar je liked of disliked array
 function updateLikedUsers(req, res) {
-  if (req.body.like) {
+  if (req.body) {
     User.updateOne({
-      name: signedUser[0].name,
+      name: signedUser.name,
     }, {
       $push: {
         liked: req.body.like,
@@ -130,9 +133,9 @@ function updateLikedUsers(req, res) {
 };
 
 function updateDislikedUsers(req, res) {
-  if (req.body.dislike) {
+  if (req.body) {
     User.updateOne({
-      name: signedUser[0].name,
+      name: signedUser.name,
     }, {
       $push: {
         liked: req.body.dislike,
@@ -145,26 +148,26 @@ function updateDislikedUsers(req, res) {
 // gelikete user wordt doorgestuurd naar match pagina
 async function match(req, res, next) {
   try {
-    const signedUser = await User.find({
-    // Name
-    }).toArray();
+    const signedUser = await User.findOne({
+      name: 'Collin'
+    })
 
     // het hele object van de gematchte user wordt uit de database gehaald
     // zodat je alleen de user die je hebt geliked/matched op de match pagina te zien krijgt
     const match = await User
       .find({
-        name: req.body.like,
-      })
-      .toArray();
+        name: req.body.like
+      });
+    console.log(req.body.like)
     // updateUsers wordt aangeroepen waarbij een argument wordt meegegeven
     // als de gematchte waarde true is, dan heb je een match en wordt gerenderd naar match route
-    if (updateLikedUsers(signedUser[0]) === true) {
-      console.log(`you have a match with ${match[0].name} `);
+    if (updateLikedUsers(signedUser) === true) {
+      console.log(`you have a match with ${match.name} `);
       res.render("match", {
         users: match,
       });
       // als de gematchte waarde false is, wordt je teruggestuurd naar de index
-    } else if (updateDislikedUsers(signedUser[0]) === false) {
+    } else if (updateDislikedUsers(signedUser) === false) {
       console.log(`no match.`);
       res.redirect("/");
     }
@@ -177,10 +180,10 @@ async function match(req, res, next) {
 async function profile(req, res) {
   try {
     const signedUser = await User.find({
-      
+        name: 'Collin'
       })
       .toArray();
-    const allLikedBabies = signedUser[0].liked;
+    const allLikedBabies = signedUser.liked;
     // zorgt voor dat de array niet telt vanaf 0
     // en die waarde wordt in likedUser meegegeven als de index
     const likedBaby = allLikedBabies.length - 1;

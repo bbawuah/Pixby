@@ -6,10 +6,13 @@ const bodyParser = require("body-parser");
 const app = express(); // opstarten van express applicatie
 const port = 4000;
 const path = require("path");
-const likeAndMatch = require("./src/routes/likeAndMatch")
-const chatRoom = require("./sc/routes/chatRoom")
-const findUser = require("./src/routes/findUser")
-const profileUser = require("./src/routes/profile")
+
+// require feature modules
+const likeAndMatch = require("./src/routes/likeAndMatch");
+const chatRoom = require("./src/routes/chatRoom");
+const findUser = require("./src/routes/findUser");
+const profileUser = require("./src/routes/profile");
+
 // Load in mongoose and make connection to database
 require("./src/db/mongoose.js");
 

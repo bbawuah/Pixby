@@ -46,7 +46,7 @@ app
 // inlogpagina waar alle session gebruikers worden weergeven
 async function signIn(req, res, next) {
   try {
-    const fromDatabase = await usersList.find().toArray();
+    const fromDatabase = await User.find().toArray();
     res.render("signin", {
       title: "signin",
       users: fromDatabase,
@@ -59,8 +59,7 @@ async function signIn(req, res, next) {
 // hier wordt je doorgestuurd naar de indexpagina
 async function loadSignIn(req, res, next) {
   try {
-    req.session.name = req.body.name;
-    console.log(req.session.name);
+    //Hier komt logic voor json webtoken
     res.redirect("/");
   } catch (error) {
     next(error);
@@ -72,18 +71,16 @@ async function home(req, res, next) {
   try {
     // elke keer de server opnieuw start
     // redirect je naar inlogpagina
-    if (req.session.name === undefined) {
+    
+
       res.redirect("/signin");
-    }
-    // haalt session gebruiker uit de database
-    let signedUser = await usersList
-      .find({
-        name: req.session.name,
+    // 
+    let signedUser = await User.find({
+      //  Name
       })
       .toArray();
     // alle gebruikers uit de database gehaald zonder signedUser mee te nemen
-    const allBabies = await usersList
-      .find({
+    const allBabies = await User.find({
         $and: [
           {
             name: {
@@ -121,7 +118,7 @@ async function home(req, res, next) {
 // van de gebruiker gepusht naar je liked of disliked array
 function updateLikedUsers(req, res) {
   if (req.body.like) {
-    usersList.updateOne({
+    User.updateOne({
       name: signedUser[0].name,
     }, {
       $push: {
@@ -134,7 +131,7 @@ function updateLikedUsers(req, res) {
 
 function updateDislikedUsers(req, res) {
   if (req.body.dislike) {
-    usersList.updateOne({
+    User.updateOne({
       name: signedUser[0].name,
     }, {
       $push: {
@@ -148,13 +145,13 @@ function updateDislikedUsers(req, res) {
 // gelikete user wordt doorgestuurd naar match pagina
 async function match(req, res, next) {
   try {
-    const signedUser = await usersList.find({
-      name: req.session.name
+    const signedUser = await User.find({
+    // Name
     }).toArray();
 
     // het hele object van de gematchte user wordt uit de database gehaald
     // zodat je alleen de user die je hebt geliked/matched op de match pagina te zien krijgt
-    const match = await usersList
+    const match = await User
       .find({
         name: req.body.like,
       })
@@ -179,9 +176,8 @@ async function match(req, res, next) {
 // profile pagina van de gematchte baby wordt revealed naar de volwassen jochie.
 async function profile(req, res) {
   try {
-    const signedUser = await usersList
-      .find({
-        name: req.session.name,
+    const signedUser = await User.find({
+      
       })
       .toArray();
     const allLikedBabies = signedUser[0].liked;
@@ -190,8 +186,7 @@ async function profile(req, res) {
     const likedBaby = allLikedBabies.length - 1;
     const likedUser = allLikedBabies[likedBaby];
     // hele object van de gelikete user wordt uit de database gehaald
-    const showMatch = await usersList
-      .find({
+    const showMatch = await User.find({
         name: likedUser,
       })
       .toArray();

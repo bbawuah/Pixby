@@ -1,37 +1,81 @@
 {{>header}}
 
-<body class="home">
-  <ul class="container">
-    {{#each users}}
-    <li>
-      <section>
-        <figure><img src="img/components/{{img}}" alt="">
-          <figcaption class="card_cap">
-            <h2>{{name}}, {{age}}</h2>
-            <h3>{{location}}</h3>
-            <h3>{{profession}}</h3>
-          </figcaption>
-        </figure>
-        <form action="/match" method="POST">
-          <div class="decline">
-            <div class="white-btn">
-              <input type="submit" value="{{name}}" src="img/components/cross.svg" name="dislike">
-            </div>
-          </div>
-          <div class="superlike">
-            <div class="white-btn">
-              <input type="image" value="superlike" src="img/components/star.svg" name="superlike">
-            </div>
-          </div>
-          <div class="like">
-            <div class="white-btn">
-              <input type="submit" value="{{name}}" src="img/components/heart.svg" name="like">
-            </div>
-          </div>
+<body class="register">
+
+
+
+    <section>
+        <form action="#" method="post" class="login" enctype="multipart/form-data">
+            <h4>Register</h4>
+            <label>
+                Name
+                <input id="username" type="text" required name="name">
+            </label>
+
+            <label>
+                Age
+                <input id="age" type="number" required name="age">
+            </label>
+
+            <label>
+                Password
+                <input id="password" type="password" required name="password">
+            </label>
+
+            <label for="image">
+                Baby picture
+                <input type="file" name="img">
+            </label>
+
+            <label for="image">
+                Old picture
+                <input type="file" name="imgOld">
+            </label>
+
+            <label>
+                Location
+                <input id="location" type="text" required name="location">
+            </label>
+
+            <label>
+                Profession
+                <input id="profession" type="text" required name="profession">
+            </label>
+
+            <label>
+                About
+                <textarea name="about" id="" cols="30" rows="10"></textarea>
+            </label>
+            <button type="submit">Register</button>
         </form>
-      </section>
-    </li>
-    {{/each}}
-  </ul>
+    </section>
+
+    <script>
+
+        const form = document.getElementsByTagName('form')[0];
+        const button = document.getElementsByTagName('button')[0];
+        const username = document.getElementById('username');
+        const age = document.getElementById('age');
+        const password = document.getElementById('password');
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const data = {
+                username: username.value,
+                age: age.value,
+                password: password.value
+            }
+            fetch('http://localhost:3000/user', {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data) //Send data of form to server
+            }).then((res) => {
+                return res.json()
+            }).then((data) => {
+                localStorage.setItem('access_token', data.token)
+                console.log(data)
+                return window.location.href = 'http://localhost:3000/home'
+            })
+        })
+    </script>
 </body>
 {{>footer}}

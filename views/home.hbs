@@ -1,0 +1,37 @@
+{{>header}}
+
+<body class="home">
+  <ul class="container">
+    {{#each users}}
+    <li>
+      <section>
+        <figure><img src="img/components/{{img}}" alt="">
+          <figcaption class="card_cap">
+            <h2>{{name}}, {{age}}</h2>
+            <h3>{{location}}</h3>
+            <h3>{{profession}}</h3>
+          </figcaption>
+        </figure>
+        <form action="/match" method="POST">
+          <div class="decline">
+            <div class="white-btn">
+              <input type="submit" value="{{name}}" src="img/components/cross.svg" name="dislike">
+            </div>
+          </div>
+          <div class="superlike">
+            <div class="white-btn">
+              <input type="image" value="superlike" src="img/components/star.svg" name="superlike">
+            </div>
+          </div>
+          <div class="like">
+            <div class="white-btn">
+              <input type="submit" value="{{name}}" src="img/components/heart.svg" name="like">
+            </div>
+          </div>
+        </form>
+      </section>
+    </li>
+    {{/each}}
+  </ul>
+</body>
+{{>footer}}

@@ -7,6 +7,8 @@ const app = express(); // opstarten van express applicatie
 const port = 4000;
 const path = require("path");
 
+const register = require("./src/routes/register");
+
 const match =  require("./src/routes/likeAndMatch");
 const chatRoom = require("./src/routes/chatRoom");
 const findUser = require("./src/routes/searchUser");
@@ -40,6 +42,8 @@ app
 
 hbs.registerPartials(path.join(__dirname, "/views/partials"));
 
+app.use(register)
+
 // mount the routes to the app
 // app
 //   .use("/", match)
@@ -51,7 +55,10 @@ hbs.registerPartials(path.join(__dirname, "/views/partials"));
 app
   .get("/signin", signIn)
   .post("/loading", loadSignIn)
-  .get("/", home)
+  .get('/', (req, res) => {
+    res.render('index')
+  })
+  .get("/home", home)
   .post("/match", match)
   .post("/profile", profileUser)
   .get("/*", error);

@@ -50,7 +50,30 @@ section {
   flex-direction: column;
 }
 
+/* FORM */
 
+.register form{
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.register form h4{
+  font-size: 1.3rem;
+}
+
+.register form label{
+  width: 100%;
+  font-size: 1.2rem;
+  display: flex;
+  margin: .5rem 0;
+  justify-content: space-between;
+}
+
+.register form label input{
+  min-height: 1.5rem;
+  max-width: 10rem;
+}
 /********************** 
     HOME
 **********************/

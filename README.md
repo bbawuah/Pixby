@@ -17,16 +17,10 @@ Welcome to our project for Blok-tech. The concept is based on the generic idea o
 ### Marco 
 > "When I click on a profile, I want to see the important characteristics of that person directly. That way I can make a fast decision if I really like that person."
 
-<<<<<<< HEAD
-## Features
-* Wanneer ik inlog en op zoek ben naar een match, wil ik zoeken op interesses, zodat ik kan zien wie een mogelijk match is
-### TEST PULL REQUEST TEST TEST TEST
-=======
 ### Naomi
 > "When I am looking for a match, I want to be able to search for profiles with the same interests, so I can find people who are a possible match"
 
 ***
->>>>>>> 57d4dd667f3d3fc756954e9a54c6971e78955028
 
 ## Install the feature
 

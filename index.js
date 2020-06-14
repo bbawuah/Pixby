@@ -7,7 +7,7 @@ const app = express(); // opstarten van express applicatie
 const port = 4000;
 const path = require("path");
 
-const match =  require("./src/routes/likeAndMatch");
+const match = require("./src/routes/likeAndMatch");
 const chatRoom = require("./src/routes/chatRoom");
 const findUser = require("./src/routes/searchUser");
 const profileUser = require("./src/routes/profile");
@@ -53,7 +53,7 @@ app
   .post("/loading", loadSignIn)
   .get("/", home)
   .post("/match", match)
-  .post("/profile", profileUser)
+  .post("/profile/:id", profileUser)
   .get("/*", error);
 
 // inlogpagina waar alle session gebruikers worden weergeven

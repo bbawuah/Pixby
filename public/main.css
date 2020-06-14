@@ -224,6 +224,25 @@ section form {
 }
 
 /********************** 
+    SEARCHBAR
+**********************/
+
+#search{
+  display: block;
+  margin: 80px auto 0 auto;
+  width: 50%;
+  height: 4em;
+  padding: 10px;
+  border-radius: 3rem;
+  border-color: #6886c5;
+  border-width: 4px;
+  border-style: solid;
+
+}
+
+
+
+/********************** 
     MATCH
 **********************/
 
@@ -237,7 +256,7 @@ section form {
 
 section h1 {
   padding-bottom: 0.8em;
-  color: #8886C5;
+  border-radius: 50%;
 }
 
 section form [input="submit"] {

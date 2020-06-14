@@ -3,3 +3,4 @@
 
 // module.exports = router;
 
+const User = require("../models/users");

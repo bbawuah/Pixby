@@ -159,6 +159,7 @@ ul section form input[type=submit] {
   border: none;
   background-color: transparent;
   color: transparent;
+  cursor: pointer;
 }
 
 ul section form .decline input[type=submit] {

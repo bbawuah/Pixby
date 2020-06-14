@@ -2,24 +2,31 @@
 
 ![mockup](https://github.com/joannlap/Pixby/blob/master/wiki_img/mockups.png)
 
-<<<<<<< HEAD
-### Jo-Ann: Like/match
+Hola!
 
+Welcome to our project for Blok-tech. The concept is based on the generic idea of a dating app, but with a twist. On Pixby, users are only allowed to use baby pictures. That way, you get to see their natural faces without any applied filters/edits. Biases are based on the baby pictures :). 
+
+## Features
+
+### Brian
+> "When I choose a Netflix episode, I want to have a Netflix-partner so I have company while I am Netflixing"
+
+### Jo-Ann
 > "When I am looking for a date, I want to like a person based on their baby photo, so when there's a match I can tell if the baby photo relates to how my match looks at this point in time."
-=======
-### Chat feature
 
-Gebruikers kunnen in de chat feature elkaar beter leren kennen door over hun interesses of over actuele topics te praten.
->>>>>>> 7bdc1874f8ab0c03300dd3bb74e984ac7227e510
+### Marco 
+> "When I click on a profile, I want to see the important characteristics of that person directly. That way I can make a fast decision if I really like that person."
 
-test...
-
-Hi!
-Welcome to my project for Blok-tech. The concept is based on the generic idea of a dating app, but with a twist. On Pixby, users are only allowed to use baby pictures. That way, you get to see their natural faces without any applied filters/edits. Biases are based on the baby pictures :). 
-
+<<<<<<< HEAD
 ## Features
 * Wanneer ik inlog en op zoek ben naar een match, wil ik zoeken op interesses, zodat ik kan zien wie een mogelijk match is
 ### TEST PULL REQUEST TEST TEST TEST
+=======
+### Naomi
+> "When I am looking for a match, I want to be able to search for profiles with the same interests, so I can find people who are a possible match"
+
+***
+>>>>>>> 57d4dd667f3d3fc756954e9a54c6971e78955028
 
 ## Install the feature
 
@@ -27,7 +34,7 @@ Welcome to my project for Blok-tech. The concept is based on the generic idea of
 
 Clone this repository to your local machine:
 
-`$ git https://github.com/joannlap/Pixby.git`
+`$ git https://github.com/bbawuah/Pixby.git`
 
 ### Navigate to this repo
 

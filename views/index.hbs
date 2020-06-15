@@ -24,12 +24,12 @@
 
             <label for="image">
                 Baby picture
-                <input type="file" name="img">
+                <input id="baby-img" type="file" name="img">
             </label>
 
             <label for="image">
                 Old picture
-                <input type="file" name="imgOld">
+                <input id="old-image" type="file" name="imgOld">
             </label>
 
             <label>
@@ -54,19 +54,29 @@
 
         const form = document.getElementsByTagName('form')[0];
         const button = document.getElementsByTagName('button')[0];
-        const username = document.getElementById('username');
+
+        const name = document.getElementById('username');
         const age = document.getElementById('age');
         const password = document.getElementById('password');
+
+        const babyImg = document.getElementById('baby-img');
+        const oldImg = document.getElementById('old-image');
+
         button.addEventListener('click', (e) => {
             e.preventDefault();
+
             const data = {
-                username: username.value,
+                name: name.value,
                 age: age.value,
-                password: password.value
+                password: password.value,
+              
             }
+
+
+
             fetch('http://localhost:3000/user', {
                 method: 'POST',
-                headers: { "Content-Type": "application/json" },
+                headers: { "Accept": "application/json" },
                 body: JSON.stringify(data) //Send data of form to server
             }).then((res) => {
                 return res.json()

@@ -2,13 +2,27 @@ const express = require('express');
 // Laad Express in
 const register = new express.Router(); // Create nieuwe instance of register
 
+const sharp = require('sharp'); // Package for resizing images
+const multer = require('multer');
+
 const auth = require('../authenticate/auth');
 // Mongoose models
 const User = require('../models/users');
 
+const upload = multer();
 
 // Api route waarmee ik een nieuwe user aanmaak
-register.post('/user', async (req, res) => {
+register.post('/user', upload.fields([{name: 'img'}, {name: 'imgOld'}]),async (req, res) => {
+
+  console.log(req) 
+  console.log(req.file) 
+
+  const buffer = await sharp(req.file.buffer)
+  .resize({ width: 500, height: 500 })
+  .png()
+  .toBuffer();
+
+  
   const user = new User(req.body); // Create new user with data
   const token = await user.generateAuthToken(); // Dit is dus een custom method op mijn mongoose middleware. Zie model/users.js
 

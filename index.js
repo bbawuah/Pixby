@@ -29,11 +29,14 @@ const User = require("./src/models/users");
   // console.log(users);
 })();
 
+
+
 // middleware
 app
   .set("view engine", "hbs")
   .set("views", "views")
-  .use(express.static("public")) // gebruikt deze map (public) om html bestanden te serveren
+  .use(express.static("public"))
+  .use(express.json()) // gebruikt deze map (public) om html bestanden te serveren
   .use(
     bodyParser.urlencoded({
       extended: true,

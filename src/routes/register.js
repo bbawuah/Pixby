@@ -9,7 +9,7 @@ const auth = require("../authenticate/auth");
 // Mongoose models
 const User = require("../models/users");
 
-const upload = multer({ dest: "static/uploads/" });
+const upload = multer({ dest: "public/img/components/" });
 
 // Api route waarmee ik een nieuwe user aanmaak
 register.post(

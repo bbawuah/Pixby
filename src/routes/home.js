@@ -32,7 +32,7 @@ async function home(req, res, next) {
       ],
     });
     // allBabies wordt gerendert naar de index
-    res.render("index", {
+    res.render("home", {
       title: "home",
       users: allBabies,
     });

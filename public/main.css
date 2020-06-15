@@ -1,3 +1,11 @@
+/* ---------------------------------------------------VARIABLES */
+:root {
+	/* COLORS */
+	--mainColor: #8886C5; /*MAIN PURPLE COLOR*/
+	--accentColor: #FFACB7; /*ACCENT PINK COLOR*/
+	--accentColor2: #f9f9f9; /*ACCENT WHITE COLOR*/
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -7,7 +15,7 @@
 }
 
 
-/********************** 
+/**********************
     login page
 **********************/
 
@@ -23,14 +31,14 @@ section {
   align-items: center;
 }
 
-button {
+button, .viewProfile {
   width: 300px;
   padding: 20px;
   margin: 0.5em;
   font-size: 18px;
   text-align: center;
-  background-color: #8886C5;
-  color: #f9f9f9;
+  background-color: var(--mainColor);
+  color: var(--accentColor2);
   border: none;
   border-radius: 3.1rem;
   font-weight: 600;
@@ -40,7 +48,7 @@ button {
 
 .twitter {
   border-style: solid;
-  border-color: #8886C5;
+  border-color: var(--mainColor);
   background-color: transparent;
   color: black;
   font-weight: 300;
@@ -51,7 +59,7 @@ section {
 }
 
 
-/********************** 
+/**********************
     HOME
 **********************/
 
@@ -119,7 +127,7 @@ li>#logo {
   top: 50%;
 } */
 
-/*************************************** 
+/***************************************
    navbar: decline, superlike, like
 ***************************************/
 
@@ -146,7 +154,7 @@ ul section form>div {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  background-color: #FFACB7;
+  background-color: var(--accentColor);
   align-self: flex-end;
 }
 
@@ -192,7 +200,7 @@ ul section form .white-btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f9;
+  background-color: var(--accentColor2);
   height: 70px;
   width: 70px;
   border-radius: 50%;
@@ -230,7 +238,7 @@ section form {
   font-size: 11px;
 }
 
-/********************** 
+/**********************
     SEARCHBAR
 **********************/
 
@@ -249,7 +257,7 @@ section form {
 
 
 
-/********************** 
+/**********************
     MATCH
 **********************/
 
@@ -262,17 +270,18 @@ section form {
 }
 
 section h1 {
+  color: var(--mainColor);
   padding-bottom: 0.8em;
   border-radius: 50%;
 }
 
 section form [input="submit"] {
-  background-color: #FFACB7;
+  background-color: var(--accentColor);
 }
 
 section a [input="submit"] {
   border-style: solid;
-  border-color: #FFACB7;
+  border-color: var(--accentColor);
   background-color: transparent;
   color: black;
   font-weight: 500;
@@ -281,14 +290,14 @@ section a [input="submit"] {
 
 section a .keepswiping {
   border-style: solid;
-  border-color: #FFACB7;
+  border-color: var(--accentColor);
   background-color: transparent;
   color: black;
   font-weight: 500;
   font-size: 18px;
 }
 
-/********************** 
+/**********************
     PROFILE
 **********************/
 
@@ -302,7 +311,7 @@ article.about>p {
 
 article h2 {
   padding-bottom: 0.5em;
-  color: #f9f9f9
+  color: var(--accentColor2);
 }
 
 article:first-child {
@@ -317,14 +326,14 @@ button.btn_interest {
   padding: 1em 0 1em 0;
   width: 120px;
   font-size: 12px;
-  background-color: #f9f9f9;
+  background-color: var(--accentColor2);
   color: black;
 }
 
 .chat-btn {
   display: flex;
   justify-content: center;
-  background-color: #FFACB7;
+  background-color: var(--accentColor);
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -359,7 +368,7 @@ figcaption p:last-child {
 
 .fillimage img {
   position: absolute;
-  height: 80%;
+  height: 100vh;
   width: 100%;
   object-fit: cover;
 }
@@ -367,7 +376,7 @@ figcaption p:last-child {
 .gradient {
   position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 79vh;
 }
 
 .gradient::before {
@@ -375,11 +384,12 @@ figcaption p:last-child {
   position: absolute;
   top: 30vh;
   width: 100%;
-  height: 100%;
+  min-height: 69vh;
   background-color: rgb(136, 134, 197);
   z-index: 5;
   background: rgb(136, 134, 197);
   background: linear-gradient(0deg, rgba(136, 134, 197) 50%, rgba(136, 134, 197, 0) 100%);
+	opacity: .95;
 }
 
 
@@ -390,7 +400,7 @@ figcaption p:last-child {
   width: 100%;
   font-size: 15px;
   font-weight: 600;
-  color: #f9f9f9;
+  color: var(--accentColor2);
 }
 
 .textbox,
@@ -424,16 +434,38 @@ figcaption {
 
   /* profile */
   div.textbox {
-    padding: 6em 0 0 35em;
+    padding-top: 0;
+    margin-left: 50%;
+		margin-top: 5em;
+		padding: 2em;
+		box-sizing: border-box;
   }
 
+	div.textbox h2{
+		color: var(--mainColor);
+	}
+
+	div.textbox p{
+		color: black;
+	}
+
   .profilecap {
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-direction: row;
-    width: 40%;
+    width: 50%;
   }
 
   .fillimage img {
     width: 50%;
+		height: 100vh;
   }
+
+	.gradient figure{
+		width: 100%;
+		position: absolute;
+	}
+
+	.gradient::before{
+		top: 10vh;
+	}
 }

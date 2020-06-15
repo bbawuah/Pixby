@@ -1,11 +1,11 @@
-{{#each users}}
+{{#with user}}
 <div class="fillimage">
-  <img src='img/components/{{imgOld}}' alt="">
+  <img src='../img/components/{{imgOld}}' alt="">
 </div>
-{{/each}}
-{{> header}}
+{{/with}}
+{{>header}}
 <div class="gradient">
-  {{#each users}}
+  {{#with user}}
   <figure>
     <figcaption class="profilecap">
       <div>
@@ -14,7 +14,7 @@
         <p>{{profession}}</p>
       </div>
       <div class="chat-btn">
-        <img src="img/components/chat-white.svg" alt="">
+        <img src="../img/components/chat-white.svg" alt="">
       </div>
     </figcaption>
   </figure>
@@ -23,10 +23,7 @@
   <div class="textbox">
     <article class="about">
       <h2>About</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi labore perspiciatis vero doloremque
-        exercitationem, perferendis ullam! Tempora nemo obcaecati repudiandae ab quisquam voluptatum modi illo
-        tenetur
-        beatae, maxime tempore sunt.</p>
+      <p>{{about}}</p>
     </article>
 
     <article class="interest">
@@ -40,4 +37,4 @@
   </div>
 </div>
 </div>
-{{/each}};
+{{/with}};

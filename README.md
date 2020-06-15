@@ -74,9 +74,3 @@ Insert this command to start the server!
   https://trungk18.com/experience/uncaught-type-error/#:~:text=It%20is%20a%20very%20common,undefined%20or%20null%20in%20JavaScript.
 - Uncaught TypeError: Cannot read property 'name' of undefined
   https://stackoverflow.com/questions/17697412/uncaught-typeerror-cannot-read-property-name-of-undefined
-
-## Versions
-
-### 0.1
-
-Readme edited to tryout mergeconflicts

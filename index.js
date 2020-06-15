@@ -60,7 +60,7 @@ app
   })
   .get("/home", home)
   .post("/match", match)
-  .post("/profile", profileUser)
+  .post("/profile/:id", profileUser)
   .get("/*", error);
 
 // inlogpagina waar alle session gebruikers worden weergeven

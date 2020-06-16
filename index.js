@@ -7,7 +7,9 @@ const app = express(); // opstarten van express applicatie
 const port = 4000;
 const path = require("path");
 
-const match = require("./src/routes/likeAndMatch");
+const register = require("./src/routes/register");
+
+const match =  require("./src/routes/likeAndMatch");
 const chatRoom = require("./src/routes/chatRoom");
 const findUser = require("./src/routes/searchUser");
 const profileUser = require("./src/routes/profile");
@@ -27,11 +29,14 @@ const User = require("./src/models/users");
   // console.log(users);
 })();
 
+
+
 // middleware
 app
   .set("view engine", "hbs")
   .set("views", "views")
-  .use(express.static("public")) // gebruikt deze map (public) om html bestanden te serveren
+  .use(express.static("public"))
+  .use(express.json()) // gebruikt deze map (public) om html bestanden te serveren
   .use(
     bodyParser.urlencoded({
       extended: true,
@@ -39,6 +44,8 @@ app
   );
 
 hbs.registerPartials(path.join(__dirname, "/views/partials"));
+
+app.use(register)
 
 // mount the routes to the app
 // app
@@ -51,7 +58,10 @@ hbs.registerPartials(path.join(__dirname, "/views/partials"));
 app
   .get("/signin", signIn)
   .post("/loading", loadSignIn)
-  .get("/", home)
+  .get('/', (req, res) => {
+    res.render('index')
+  })
+  .get("/home", home)
   .post("/match", match)
   .post("/profile/:id", profileUser)
   .get("/*", error);

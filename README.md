@@ -10,6 +10,7 @@ Welcome to our project for Blok-tech. The concept is based on the generic idea o
 
 ### Brian
 > "When I choose a Netflix episode, I want to have a Netflix-partner so I have company while I am Netflixing"
+<<<<<<< HEAD
 #### topic
 [Implement Unit Testing](https://github.com/bbawuah/Pixby/wiki/Implement-Unit-Testing)
 
@@ -27,6 +28,17 @@ Welcome to our project for Blok-tech. The concept is based on the generic idea o
 > "When I am looking for a match, I want to be able to search for profiles with the same interests, so I can find people who are a possible match"
 #### topic
 [Handle Exceptions Properly](https://github.com/bbawuah/Pixby/wiki/Handle-exceptions-properly)
+=======
+
+### Jo-Ann
+> "When I am looking for a date, I want to like a person based on their baby photo, so when there's a match I can tell if the baby photo relates to how my match looks at this point in time."
+
+### Marco 
+> "When I click on a profile, I want to see the important characteristics of that person directly. That way I can make a fast decision if I really like that person."
+
+### Naomi
+> "When I am looking for a match, I want to be able to search for profiles with the same interests, so I can find people who are a possible match"
+>>>>>>> dceed18d9c74ffc73472065d74759da7a22c4d0c
 
 ***
 
@@ -82,9 +94,12 @@ Insert this command to start the server!
   https://trungk18.com/experience/uncaught-type-error/#:~:text=It%20is%20a%20very%20common,undefined%20or%20null%20in%20JavaScript.
 - Uncaught TypeError: Cannot read property 'name' of undefined
   https://stackoverflow.com/questions/17697412/uncaught-typeerror-cannot-read-property-name-of-undefined
+<<<<<<< HEAD
 
 ## Versions
 
 ### 0.1
 
 Readme edited to tryout mergeconflicts
+=======
+>>>>>>> dceed18d9c74ffc73472065d74759da7a22c4d0c

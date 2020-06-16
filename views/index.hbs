@@ -1,42 +1,83 @@
 {{>header}}
 
-<body class="home">
+<body class="register">
 
-  <form id="searchInterests">
-    <input type="text" placeholder="Search interests ..." id="search">
-  </form>
 
-  <ul class="container">
-    {{#each users}}
-    <li>
-      <section>
-        <figure><img src="img/components/{{img}}" alt="">
-          <figcaption class="card_cap">
-            <h2>{{name}}, {{age}}</h2>
-            <h3>{{location}}</h3>
-            <h3>{{profession}}</h3>
-          </figcaption>
-        </figure>
-        <form action="/match" method="POST">
-          <div class="decline">
-            <div class="white-btn">
-              <input type="submit" value="{{_id}}" src="img/components/cross.svg" name="dislike">
-            </div>
-          </div>
-          <div class="superlike">
-            <div class="white-btn">
-              <input type="image" value="superlike" src="img/components/star.svg" name="superlike">
-            </div>
-          </div>
-          <div class="like">
-            <div class="white-btn">
-              <input type="submit" value="{{_id}}" src="img/components/heart.svg" name="like">
-            </div>
-          </div>
+
+    <section>
+        <form action="#" method="post" class="login" enctype="multipart/form-data">
+            <h4>Register</h4>
+            <label>
+                Name
+                <input id="username" type="text" required name="name">
+            </label>
+
+            <label>
+                Age
+                <input id="age" type="number" required name="age">
+            </label>
+
+            <label>
+                Password
+                <input id="password" type="password" required name="password">
+            </label>
+
+            <label for="image">
+                Baby picture
+                <input id="baby-img" type="file" name="baby-img">
+            </label>
+
+            <label for="image">
+                Old picture
+                <input id="old-image" type="file" name="old-image">
+            </label>
+
+            <label>
+                Location
+                <input id="location" type="text" required name="location">
+            </label>
+
+            <label>
+                Profession
+                <input id="profession" type="text" required name="profession">
+            </label>
+
+            <label>
+                About
+                <textarea name="about" id="" cols="30" rows="10"></textarea>
+            </label>
+            <button type="submit">Register</button>
         </form>
-      </section>
-    </li>
-    {{/each}}
-  </ul>
+    </section>
+
+    <script>
+
+        const form = document.getElementsByTagName('form')[0];
+        const button = document.getElementsByTagName('button')[0];
+
+        const name = document.getElementById('username');
+        const age = document.getElementById('age');
+        const password = document.getElementById('password');
+
+        const babyImg = document.getElementById('baby-img');
+        const oldImg = document.getElementById('old-image');
+
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            fetch('http://localhost:3000/user', {
+                method: 'POST',
+                body: formData //Send data of form to server
+            }).then((res) => {
+                return res.json()
+            }).then((data) => {
+                localStorage.setItem('access_token', data.token)
+                console.log(data)
+                return window.location.href = 'http://localhost:3000/home'
+            })
+        })
+    </script>
 </body>
 {{>footer}}

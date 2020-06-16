@@ -1,5 +1,4 @@
 const User = require("../models/users");
-const { db } = require("../models/users");
 
 
 // indexpagina

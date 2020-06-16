@@ -9,6 +9,7 @@ const path = require("path");
 
 const register = require("./src/routes/register");
 
+const auth = require('./src/authenticate/auth');
 const match = require("./src/routes/likeAndMatch");
 const chatRoom = require("./src/routes/chatRoom");
 const findUser = require("./src/routes/searchUser");
@@ -21,6 +22,7 @@ const userJSON = require("./pixby-users.json");
 
 // Load in model
 const User = require("./src/models/users");
+const cookieParser = require("cookie-parser");
 
 
 // Example of how to create CRUD operations
@@ -41,53 +43,21 @@ app
     bodyParser.urlencoded({
       extended: true,
     })
-  );
+  )
+  .use(register)
+  .use(cookieParser())
 
 hbs.registerPartials(path.join(__dirname, "/views/partials"));
 
-app.use(register)
 
-// mount the routes to the app
-// app
-//   .use("/", match)
-//   .use("/", chatRoom)
-//   .use("/", findUser)
-//   .use("/", profileUser);
-
-// Jo-Ann's feature
 app
-  .get("/signin", signIn)
-  .post("/loading", loadSignIn)
   .get('/', (req, res) => {
     res.render('index')
   })
-  .get("/home", home)
-  .post("/match", match)
-  .post("/profile/:id", profileUser)
+  .get("/home", auth, home)
+  .post("/match", auth, match)
+  .post("/profile/:id", auth, profileUser)
   .get("/*", error);
-
-// inlogpagina waar alle session gebruikers worden weergeven
-async function signIn(req, res, next) {
-  try {
-    const fromDatabase = await User.find().toArray();
-    res.render("signin", {
-      title: "signin",
-      users: fromDatabase,
-    });
-  } catch (error) {
-    next(error);
-  }
-}
-
-// hier wordt je doorgestuurd naar de indexpagina
-async function loadSignIn(req, res, next) {
-  try {
-    //Hier komt logic voor json webtoken
-    res.redirect("/");
-  } catch (error) {
-    next(error);
-  }
-}
 
 
 // rendert error pagina

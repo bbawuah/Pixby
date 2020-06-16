@@ -52,10 +52,6 @@ register.post(
   }
 );
 
-register.get("/users/me", auth, async (req, res) => {
-  res.send(req.user); // Zie auth function
-});
-
 // LOGIN register
 register.post("/users/login", async (req, res) => {
   try {

@@ -1,13 +1,16 @@
 const User = require("../models/users");
+const { db } = require("../models/users");
 
 
 // indexpagina
 async function home(req, res, next) {
   try {
     const signedUser = await User.findOne({
-      name: "Collin",
+      _id: req.user._id,
 
     });
+
+    console.log(signedUser)
     // alle gebruikers uit de database gehaald zonder signedUser mee te nemen
     const allBabies = await User.find({
       $and: [{
@@ -34,6 +37,7 @@ async function home(req, res, next) {
     // allBabies wordt gerendert naar de index
     res.render("home", {
       title: "home",
+      user: signedUser,
       users: allBabies,
     });
   } catch (error) {
@@ -42,3 +46,5 @@ async function home(req, res, next) {
 }
 
 module.exports = home;
+
+

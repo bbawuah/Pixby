@@ -66,4 +66,4 @@ function error(req, res) {
 }
 
 // Application running on port...
-app.listen(3000, () => console.log(`app draait op port ${port}!!`));
+app.listen(process.env.PORT || 3000, () => console.log(`app draait op port ${port}!!`));

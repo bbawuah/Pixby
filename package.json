@@ -5,8 +5,7 @@
   "main": "",
   "scripts": {
     "start": "node index.js",
-    "reload": "nodemon",
-    "build": "webpack"
+    "reload": "nodemon"
   },
   "repository": {
     "type": "git",

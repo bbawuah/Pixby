@@ -9,7 +9,7 @@ const path = require("path");
 
 const register = require("./src/routes/register");
 
-const match =  require("./src/routes/likeAndMatch");
+const match = require("./src/routes/likeAndMatch");
 const chatRoom = require("./src/routes/chatRoom");
 const findUser = require("./src/routes/searchUser");
 const profileUser = require("./src/routes/profile");

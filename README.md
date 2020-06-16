@@ -10,22 +10,28 @@ Welcome to our project for Blok-tech. The concept is based on the generic idea o
 
 ### Brian
 > "When I choose a Netflix episode, I want to have a Netflix-partner so I have company while I am Netflixing"
-#### topic
+#### Topic
 [Implement Unit Testing](https://github.com/bbawuah/Pixby/wiki/Implement-Unit-Testing)
+
+***
 
 ### Jo-Ann
 > "When I am looking for a date, I want to like a person based on their baby photo, so when there's a match I can tell if the baby photo relates to how my match looks at this point in time."
-#### topic
+#### Topic
 [Split up routes in modules](https://github.com/bbawuah/Pixby/wiki/Split-up-routes-in-modules)
+
+***
 
 ### Marco 
 > "When I click on a profile, I want to see the important characteristics of that person directly. That way I can make a fast decision if I really like that person."
-#### topic
+#### Topic
 [Deploy Node App](https://github.com/bbawuah/Pixby/wiki/Deploy-Node-App)
+
+***
 
 ### Naomi
 > "When I am looking for a match, I want to be able to search for profiles with the same interests, so I can find people who are a possible match"
-#### topic
+#### Topic
 [Handle Exceptions Properly](https://github.com/bbawuah/Pixby/wiki/Handle-exceptions-properly)
 
 ***

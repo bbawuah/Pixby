@@ -1,20 +1,15 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/users');
+const jwt = require("jsonwebtoken");
+const User = require("../models/users");
+const { use } = require("../routes/chatRoom");
 
 const auth = async (req, res, next) => {
   // Why does this work thooo lol..
   //   https://stackoverflow.com/questions/43325754/how-to-verify-header-exist
-  const authHeader = req.headers['x-access-token']
-    || req.headers.Authorization
-    || req.headers.authorization
-    || req.body.headers.Authorization;
+
+  const token = req.cookies["access_token"];
+  console.log(req.cookies["access_token"]);
 
   try {
-    // Store JWT token in variable from req.header(Authorization)
-    const token = authHeader.replace('Bearer ', ''); // Remove 'Bearer ' with nothing!
-    // Verify token with my secret
-    // console.log(`Token is ${token}`);
-
     // Check JWT token
     const decoded = jwt.verify(token, `${process.env.JWT_SECRET}`);
 
@@ -22,14 +17,13 @@ const auth = async (req, res, next) => {
     const user = await User.findOne({
       _id: decoded._id,
       // Find a user with a correct auth token STILL stored
-      'tokens.token': token,
+      "tokens.token": token,
     });
 
     // If there is no user throw an Errorrr
     if (!user) {
       throw new Error();
     }
-
 
     // Als je wel een user kan vinden, plaats dan de user in de req.user
     req.user = user;
@@ -38,8 +32,9 @@ const auth = async (req, res, next) => {
     next();
   } catch (e) {
     // If authentication fails, send error to authenticate to user
-    console.log(e);
-    res.status(401).send({ error: 'Eerst inloggen' });
+    console.log("Eerst inloggguuuh");
+    res.status(401)
+    res.redirect('http://localhost:3000');
   }
 };
 

@@ -73,7 +73,7 @@
             }).then((res) => {
                 return res.json()
             }).then((data) => {
-                localStorage.setItem('access_token', data.token)
+                document.cookie = `access_token=${data.token}; max-age=86400`;
                 console.log(data)
                 return window.location.href = 'http://localhost:3000/home'
             })

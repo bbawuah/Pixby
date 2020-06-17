@@ -10,7 +10,7 @@ const User = require("../models/users");
 search.get("/search:term", async (req, res) => {
 
     console.log(req.params)
-    const users = await User.find({profession: req.params.term.replace(":", "")}, (err, data) => {
+    const users = await User.find({profession: {$regex: new RegExp(req.params.term.replace(":", ""))}}, (err, data) => {
         console.log(data)
         res.send(data)
     })

@@ -55,9 +55,10 @@ register.post(
 // LOGIN register
 register.post("/users/login", upload.fields([{ name: "baby-img" }, { name: "old-image" }]),async (req, res) => {
 
+
   try {
     const user = await User.findByCredentials(
-      req.body.name,
+      req.body.name.toLowerCase(),
       req.body.password
     ); 
     // finding a user by email with matching password

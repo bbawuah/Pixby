@@ -1,4 +1,4 @@
-# Pixby dating-app feature
+# :baby: Pixby dating-app feature
 
 ![mockup](https://github.com/joannlap/Pixby/blob/master/wiki_img/mockups.png)
 
@@ -6,31 +6,37 @@ Hola!
 
 Welcome to our project for Blok-tech. The concept is based on the generic idea of a dating app, but with a twist. On Pixby, users are only allowed to use baby pictures. That way, you get to see their natural faces without any applied filters/edits. Biases are based on the baby pictures :). 
 
-## Features
+## :iphone: Features
 
 ### Brian
 > "When I choose a Netflix episode, I want to have a Netflix-partner so I have company while I am Netflixing"
-#### topic
+#### :memo: Topic
 [Implement Unit Testing](https://github.com/bbawuah/Pixby/wiki/Implement-Unit-Testing)
+
+***
 
 ### Jo-Ann
 > "When I am looking for a date, I want to like a person based on their baby photo, so when there's a match I can tell if the baby photo relates to how my match looks at this point in time."
-#### topic
+#### :memo: Topic
 [Split up routes in modules](https://github.com/bbawuah/Pixby/wiki/Split-up-routes-in-modules)
+
+***
 
 ### Marco 
 > "When I click on a profile, I want to see the important characteristics of that person directly. That way I can make a fast decision if I really like that person."
-#### topic
+#### :memo: Topic
 [Deploy Node App](https://github.com/bbawuah/Pixby/wiki/Deploy-Node-App)
+
+***
 
 ### Naomi
 > "When I am looking for a match, I want to be able to search for profiles with the same interests, so I can find people who are a possible match"
-#### topic
+#### :memo: Topic
 [Handle Exceptions Properly](https://github.com/bbawuah/Pixby/wiki/Handle-exceptions-properly)
 
 ***
 
-## Install the feature
+## :computer: Install the feature
 
 ### Clone the repo
 
@@ -54,7 +60,7 @@ Insert this command to start the server!
 
 `npm run start`
 
-## Sources
+## :mag_right: Sources
 
 - Express Tutorial Part 4: Routes and controllers https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes
 - Express API references https://expressjs.com/en/4x/api.html#app
@@ -82,12 +88,3 @@ Insert this command to start the server!
   https://trungk18.com/experience/uncaught-type-error/#:~:text=It%20is%20a%20very%20common,undefined%20or%20null%20in%20JavaScript.
 - Uncaught TypeError: Cannot read property 'name' of undefined
   https://stackoverflow.com/questions/17697412/uncaught-typeerror-cannot-read-property-name-of-undefined
-<<<<<<< HEAD
-
-## Versions
-
-### 0.1
-
-Readme edited to tryout mergeconflicts
-=======
->>>>>>> dceed18d9c74ffc73472065d74759da7a22c4d0c

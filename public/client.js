@@ -1,5 +1,4 @@
 
-
 // https://www.youtube.com/watch?v=3NG8zy0ywIk&list=PL4cUxeGkcC9gfoKa5la9dsdCNpuey2s-V&index=17&t=107s
 
 const list = document.querySelectorAll('.card_cap .userProfession');

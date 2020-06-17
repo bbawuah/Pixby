@@ -16,7 +16,6 @@ const userSchema = new mongoose.Schema({
 
   age: {
     type: Number,
-    required: true,
     validate(value) {
       if (value <= 16) {
         throw new Error("Je bent te jong voor deze applicatie");
@@ -58,6 +57,7 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
+    required: true
   },
   tokens: [
     {
@@ -95,6 +95,19 @@ userSchema.methods.generateAuthToken = async function () {
   await user.save(); // Sla de token op in mongo
 
   return token;
+};
+
+userSchema.statics.findByCredentials = async (name, password) => {
+  const user = await User.findOne({ name });
+
+  if (!user) {
+    throw new Error('This user does not exist..');
+  }
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    throw new Error('Incorrect password..');
+  }
+  return user;
 };
 
 /**

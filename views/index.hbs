@@ -5,62 +5,107 @@
 
 
     <section>
-        <form action="#" method="post" class="login" enctype="multipart/form-data">
-            <h4>Register</h4>
+        <form class="login" enctype="multipart/form-data">
+            <h4>Login</h4>
             <label>
                 Name
-                <input id="username" type="text" required name="name">
-            </label>
-
-            <label>
-                Age
-                <input id="age" type="number" required name="age">
+                <input type="text" required name="name">
             </label>
 
             <label>
                 Password
-                <input id="password" type="password" required name="password">
+                <input type="password" required name="password">
+            </label>
+
+            <button type="submit">Login</button>
+            <p class="log-err"></p>
+        </form>
+
+        <form class="login" enctype="multipart/form-data">
+            <h4>Register</h4>
+            <label>
+                Name
+                <input type="text" required name="name">
+            </label>
+
+            <label>
+                Age
+                <input type="number" required name="age">
+            </label>
+
+            <label>
+                Password
+                <input type="password" required name="password">
             </label>
 
             <label for="image">
                 Baby picture
-                <input id="baby-img" type="file" name="baby-img">
+                <input type="file" name="baby-img">
             </label>
 
             <label for="image">
                 Old picture
-                <input id="old-image" type="file" name="old-image">
+                <input type="file" name="old-image">
             </label>
 
             <label>
                 Location
-                <input id="location" type="text" required name="location">
+                <input type="text" required name="location">
             </label>
 
             <label>
                 Profession
-                <input id="profession" type="text" required name="profession">
+                <input type="text" required name="profession">
             </label>
 
             <label>
                 About
-                <textarea name="about" id="" cols="30" rows="10"></textarea>
+                <textarea name="about" cols="30" rows="10"></textarea>
             </label>
             <button type="submit">Register</button>
+            <p class="reg-err"></p>
         </form>
+
+
+
     </section>
 
     <script>
 
-        const form = document.getElementsByTagName('form')[0];
-        const button = document.getElementsByTagName('button')[0];
+        const loginForm = document.getElementsByTagName('form')[0];
+        const loginButton = document.getElementsByTagName('button')[0];
+        const loginError = document.getElementsByClassName('log-err')[0];
 
+        const registerForm = document.getElementsByTagName('form')[1];
+        const registerButton = document.getElementsByTagName('button')[1];
+        const registerError = document.getElementsByClassName('reg-err')[0];
 
-
-        button.addEventListener('click', (e) => {
+        loginButton.addEventListener('click', (e) => {
             e.preventDefault();
 
-            const formData = new FormData(form);
+            const formData = new FormData(loginForm);
+         
+            fetch('http://localhost:3000/users/login', {
+                method: 'POST',
+                body: formData
+            }).then((res) => {
+                return res.json()
+            }).then((data) => {
+
+                if (!data.error) {
+                    document.cookie = `access_token=${data.token}; max-age=86400`;
+                    return window.location.href = 'http://localhost:3000/home'
+                } else {
+                    loginError.textContent = data.error
+                }
+            })
+        })
+
+
+        registerButton.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(registerForm);
 
             fetch('http://localhost:3000/user', {
                 method: 'POST',
@@ -68,11 +113,16 @@
             }).then((res) => {
                 return res.json()
             }).then((data) => {
-                document.cookie = `access_token=${data.token}; max-age=86400`;
-                console.log(data)
-                return window.location.href = 'http://localhost:3000/home'
+
+                if (!data.error) {
+                    document.cookie = `access_token=${data.token}; max-age=86400`;
+                    return window.location.href = 'http://localhost:3000/home'
+                } else {
+                    console.log(data.error)
+                }
             })
         })
+
     </script>
 </body>
 {{>footer}}

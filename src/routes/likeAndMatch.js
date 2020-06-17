@@ -48,9 +48,10 @@ async function match(req, res, next) {
   const like = req.body.like;
   const dislike = req.body.dislike;
 
+
   try {
     const signedUser = await User.findOne({
-      name: "Collin",
+      _id: req.user._id,
     });
 
     console.log(signedUser);

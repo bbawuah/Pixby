@@ -46,8 +46,9 @@ register.post(
 
       res.status(201).send({ user, token }); // Stuur object van user en token terug
     } catch (e) {
-      console.log(e);
-      res.status(400).send(e); // If something goes wrong, send an error back to client
+      console.log(e)
+      console.log(e.message);
+      res.status(400).send({error: e}); // If something goes wrong, send an error back to client
     }
   }
 );
@@ -56,13 +57,13 @@ register.post(
 register.post("/users/login", async (req, res) => {
   try {
     const user = await User.findByCredentials(
-      req.body.email,
+      req.body.name,
       req.body.password
-    ); // finding a user by email with matching password
-    console.log(user); // Printing out the user
+    ); 
+    // finding a user by email with matching password
+  
     const token = await user.generateAuthToken(); // Generating an authentication token for the login session
 
-    //   res.cookie('jwt', token, { httpOnly: true, domain:process.env.COOKIE_DOMAIN });
     res.send({ user, token }); // Sending back the user with the token
   } catch (e) {
     console.log(e.message); // Consoling the error

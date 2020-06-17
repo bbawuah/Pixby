@@ -8,13 +8,14 @@ const port = 4000;
 const path = require("path");
 
 const register = require("./src/routes/register");
-
 const auth = require('./src/authenticate/auth');
 const match = require("./src/routes/likeAndMatch");
 const chatRoom = require("./src/routes/chatRoom");
 const findUser = require("./src/routes/searchUser");
 const profileUser = require("./src/routes/profile");
 const home = require('./src/routes/home');
+const error = require('./src/routes/error');
+const index = require('./src/routes/index');
 // Load in mongoose and make connection to database
 require("./src/db/mongoose.js");
 
@@ -51,19 +52,11 @@ hbs.registerPartials(path.join(__dirname, "/views/partials"));
 
 
 app
-  .get('/', (req, res) => {
-    res.render('index')
-  })
+  .get('/', index)
   .get("/home", auth, home)
   .post("/match", auth, match)
   .post("/profile/:id", auth, profileUser)
   .get("/*", error);
-
-
-// rendert error pagina
-function error(req, res) {
-  res.status(404).render("error");
-}
 
 // Application running on port...
 app.listen(3000, () => console.log(`app draait op port ${port}!!`));

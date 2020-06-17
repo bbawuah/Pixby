@@ -5,18 +5,18 @@
 
 
     <section>
-
-        <form class="login" enctype="application/x-www-form-urlencoded">
+        <form class="login" enctype="multipart/form-data">
             <h4>Login</h4>
             <label>
                 Name
-                <input id="loginName" type="text" required name="name">
+                <input type="text" required name="name">
             </label>
 
             <label>
                 Password
-                <input id="loginPassword" type="password" required name="password">
+                <input type="password" required name="password">
             </label>
+
             <button type="submit">Login</button>
             <p class="log-err"></p>
         </form>
@@ -80,12 +80,11 @@
         const registerButton = document.getElementsByTagName('button')[1];
         const registerError = document.getElementsByClassName('reg-err')[0];
 
-
         loginButton.addEventListener('click', (e) => {
             e.preventDefault();
 
             const formData = new FormData(loginForm);
-
+         
             fetch('http://localhost:3000/users/login', {
                 method: 'POST',
                 body: formData
@@ -97,7 +96,7 @@
                     document.cookie = `access_token=${data.token}; max-age=86400`;
                     return window.location.href = 'http://localhost:3000/home'
                 } else {
-                    console.log(data.error)
+                    loginError.textContent = data.error
                 }
             })
         })

@@ -2,7 +2,6 @@ const express = require("express");
 // Laad Express in
 const register = new express.Router(); // Create nieuwe instance of register
 
-const sharp = require("sharp"); // Package for resizing images
 const multer = require("multer");
 
 const auth = require("../authenticate/auth");
@@ -17,8 +16,6 @@ register.post(
   upload.fields([{ name: "baby-img" }, { name: "old-image" }]),
   async (req, res) => {
 
-    console.log(req);
-
     let babyPhoto = "";
     let oldPhoto = "";
 
@@ -28,7 +25,6 @@ register.post(
     for (let i = 0; i < rawImages.length; i++) {
       babyPhoto = rawImages[0][0].filename;
       oldPhoto = rawImages[1][0].filename;
-
     }
   
 
@@ -57,8 +53,7 @@ register.post(
 );
 
 // LOGIN register
-register.post("/users/login", async (req, res) => {
-  console.log(req)
+register.post("/users/login", upload.fields([{ name: "baby-img" }, { name: "old-image" }]),async (req, res) => {
 
   try {
     const user = await User.findByCredentials(

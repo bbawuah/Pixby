@@ -1,8 +1,11 @@
 const User = require("../models/users");
 
 
-// Als je iemand liked of disliked wordt het hele object
-// van de gebruiker gepusht naar je liked of disliked array
+// When you like or dislike someone, the whole object
+// of the user pushes to the liked or disliked array
+
+// the liked user updates the given id, and pushes
+// the liked user to the liked array
 async function updateLikedUsers(match, user) {
   console.log("Deze is afgevuurd");
   console.log(`Dit is van req ${match}`);
@@ -21,7 +24,8 @@ async function updateLikedUsers(match, user) {
   }
 }
 
-
+// The disliked user updates the given id, and pushes
+// the disliked user to the disliked array
 async function updateDislikedUsers(noMatch, user) {
   console.log("Deze is afgevuurd");
   console.log(`Dit is van ${noMatch}`);
@@ -43,27 +47,27 @@ async function updateDislikedUsers(noMatch, user) {
 }
 
 
-// gelikete user wordt doorgestuurd naar match pagina
+// function match will render the liked user to the match page
 async function match(req, res, next) {
   const like = req.body.like;
   const dislike = req.body.dislike;
 
   try {
     const signedUser = await User.findOne({
-      name: "Collin",
+      _id: req.user._id,
     });
+
 
     console.log(signedUser);
 
-    // het hele object van de gematchte user wordt uit de database gehaald
-    // zodat je alleen de user die je hebt geliked/matched op de match pagina te zien krijgt
+    // The entire object of the matched user is taken from the database
+    // in order to only see the liked user matched on the match page
     const match = await User.find({
       _id: like,
     });
 
-    // updateUsers wordt aangeroepen waarbij een argument wordt meegegeven
-    // als de gematchte waarde true is, dan heb je een match en wordt gerenderd naar match route
-
+    // if the match matches the liked user, it renders to the match page
+    // or else when the user is disliked the user redirects to the home page
     if (match[0]) {
       updateLikedUsers(like, signedUser)
       console.log(match[0])
@@ -72,11 +76,10 @@ async function match(req, res, next) {
         users: match,
       });
 
-      // als de gematchte waarde false is, wordt je teruggestuurd naar de index
     } else {
       updateDislikedUsers(dislike, signedUser)
       console.log(`no match.`);
-      res.redirect("/");
+      res.redirect("/home");
     }
   } catch (error) {
     next(error);

@@ -1,7 +1,7 @@
 const User = require("../models/users");
 
 
-// indexpagina
+// home page
 async function home(req, res, next) {
   try {
     const signedUser = await User.findOne({
@@ -10,7 +10,7 @@ async function home(req, res, next) {
     });
 
     console.log(signedUser)
-    // alle gebruikers uit de database gehaald zonder signedUser mee te nemen
+    // displaying all the babies except for the signedUser 
     const allBabies = await User.find({
       $and: [{
           _id: {
@@ -19,21 +19,21 @@ async function home(req, res, next) {
         },
         {
           _id: {
-            // array waar alle gelikete users in worden opgeslagen
-            // waardoor hij niet meer zichtbaar is op de index
+            // all liked users are saved in the liked array
+            // this operator wont let the liked user appear in the homepage
             $nin: signedUser.liked,
           },
         },
         {
           _id: {
-            // array waar alle gelikete users in worden opgeslagen
-            // waardoor hij niet meer zichtbaar is op de index
+            // all liked users are saved in the liked array
+            // this operator wont let the liked user appear in the homepage
             $nin: signedUser.disliked,
           },
         },
       ],
     });
-    // allBabies wordt gerendert naar de index
+    // allBabies renders to the homepage
     res.render("home", {
       title: "home",
       user: signedUser,
@@ -45,5 +45,3 @@ async function home(req, res, next) {
 }
 
 module.exports = home;
-
-

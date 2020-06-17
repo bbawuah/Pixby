@@ -16,6 +16,9 @@ register.post(
   "/user",
   upload.fields([{ name: "baby-img" }, { name: "old-image" }]),
   async (req, res) => {
+
+    console.log(req);
+
     let babyPhoto = "";
     let oldPhoto = "";
 
@@ -55,6 +58,8 @@ register.post(
 
 // LOGIN register
 register.post("/users/login", async (req, res) => {
+  console.log(req)
+
   try {
     const user = await User.findByCredentials(
       req.body.name,

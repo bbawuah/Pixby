@@ -6,28 +6,26 @@
 
     <section>
 
-        <form action="#" class="login" enctype="multipart/form-data">
+        <form class="login" enctype="application/x-www-form-urlencoded">
             <h4>Login</h4>
             <label>
                 Name
-                <input type="text" required name="name">
+                <input id="loginName" type="text" required name="name">
             </label>
-
-
 
             <label>
                 Password
-                <input type="password" required name="password">
+                <input id="loginPassword" type="password" required name="password">
             </label>
             <button type="submit">Login</button>
             <p class="log-err"></p>
         </form>
 
-        <form action="#" class="login" enctype="multipart/form-data">
+        <form class="login" enctype="multipart/form-data">
             <h4>Register</h4>
             <label>
                 Name
-                <input type="text" required="true" name="name">
+                <input type="text" required name="name">
             </label>
 
             <label>
@@ -76,14 +74,12 @@
 
         const loginForm = document.getElementsByTagName('form')[0];
         const loginButton = document.getElementsByTagName('button')[0];
+        const loginError = document.getElementsByClassName('log-err')[0];
 
         const registerForm = document.getElementsByTagName('form')[1];
         const registerButton = document.getElementsByTagName('button')[1];
-
         const registerError = document.getElementsByClassName('reg-err')[0];
-        const loginError = document.getElementsByClassName('log-err')[0];
 
-console.log(loginError)
 
         loginButton.addEventListener('click', (e) => {
             e.preventDefault();
@@ -92,7 +88,7 @@ console.log(loginError)
 
             fetch('http://localhost:3000/users/login', {
                 method: 'POST',
-                body: formData //Send data of form to server
+                body: formData
             }).then((res) => {
                 return res.json()
             }).then((data) => {
@@ -101,7 +97,7 @@ console.log(loginError)
                     document.cookie = `access_token=${data.token}; max-age=86400`;
                     return window.location.href = 'http://localhost:3000/home'
                 } else {
-                    loginError.textContent = data.error;
+                    console.log(data.error)
                 }
             })
         })

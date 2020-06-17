@@ -99,6 +99,7 @@ userSchema.methods.generateAuthToken = async function () {
 
 userSchema.statics.findByCredentials = async (name, password) => {
   const user = await User.findOne({ name });
+
   if (!user) {
     throw new Error('This user does not exist..');
   }

@@ -279,6 +279,10 @@ section form {
   border-bottom-left-radius: 10px;
 }
 
+.userProfession::first-letter{
+  text-transform: uppercase;
+}
+
 .card_cap h3 {
   font-weight: 100;
   font-size: 11px;
@@ -290,7 +294,7 @@ section form {
 
 #search {
   display: block;
-  margin: 80px auto 0 auto;
+  margin: 40px auto 0 auto;
   width: 50%;
   height: 4em;
   padding: 10px;

@@ -11,7 +11,7 @@ const register = require("./src/routes/register");
 const auth = require('./src/authenticate/auth');
 const match = require("./src/routes/likeAndMatch");
 const chatRoom = require("./src/routes/chatRoom");
-const findUser = require("./src/routes/searchUser");
+const search = require("./src/routes/searchUser");
 const profileUser = require("./src/routes/profile");
 const home = require('./src/routes/home');
 const error = require('./src/routes/error');
@@ -46,6 +46,7 @@ app
     })
   )
   .use(register)
+  .use(search)
   .use(cookieParser())
 
 hbs.registerPartials(path.join(__dirname, "/views/partials"));

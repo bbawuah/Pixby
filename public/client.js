@@ -43,7 +43,7 @@ searchBar.addEventListener('keyup', function(e){
           <form action="/match" method="POST">
             <div class="decline">
               <div class="white-btn">
-                <input type="submit" value="{{_id}}" src="img/components/cross.svg" name="dislike">
+                <input type="submit" value=${user._id} src="img/components/cross.svg" name="dislike">
               </div>
             </div>
             <div class="superlike">
@@ -53,7 +53,7 @@ searchBar.addEventListener('keyup', function(e){
             </div>
             <div class="like">
               <div class="white-btn">
-                <input type="submit" value="{{_id}}" src="img/components/heart.svg" name="like">
+                <input type="submit" value=${user._id} src="img/components/heart.svg" name="like">
               </div>
             </div>
           </form>

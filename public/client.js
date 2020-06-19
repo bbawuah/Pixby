@@ -17,7 +17,7 @@ searchBar.addEventListener('keyup', function(e){
   var div = document.getElementsByClassName('card_cap');
   var profession = document.getElementsByClassName('userProfession');
 
-  const url = `http://localhost:3000/search:${term}`
+  const url = `/search:${term}`
   console.log(url)
 
   fetch(url).then((res) => {

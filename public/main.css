@@ -99,6 +99,11 @@ body {
   margin: 0 auto;
 }
 
+.avatar{
+  border-radius: 50%;
+  height: 60px;
+}
+
 .greet {
   display: flex;
   justify-content: space-between;
@@ -376,6 +381,17 @@ button.btn_interest {
   background-color: var(--accentColor2);
   color: black;
 }
+figcaption #chat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 150px;
+}
+
+figcaption #chat p{
+  font-size: 1rem;
+}
 
 .chat-btn {
   display: flex;
@@ -383,8 +399,17 @@ button.btn_interest {
   background-color: var(--accentColor);
   width: 60px;
   height: 60px;
+  position: relative;
   border-radius: 50%;
   z-index: 6;
+}
+
+figcaption .chat-btn p {
+  margin-top: 0 !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 div.textbox {
@@ -458,6 +483,85 @@ figcaption {
   position: relative;
   padding: 2em;
   z-index: 6;
+}
+
+.chatID .form-container form{
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.chatID .form-container form label{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.chatID .form-container form label input{
+  min-height: 1.5rem;
+  padding: .5rem;
+  font-size: 1rem;
+}
+
+.chatID .form-container form button{
+  margin: 0;
+}
+
+.compose {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chat .chat__main{
+  width: 100%;
+}
+
+.chat .chat__messages{
+  overflow-y: scroll;
+  height: 600px;
+  max-height: 600px;
+}
+
+.chat #formMessage{
+  width: 100%
+}
+
+.chat-page main{
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.chat input {
+  height: 3rem;
+  font-size: 1.1rem;
+  background-color: var(--accentColor);
+  border-radius: 5px;
+  border: none;
+  color: #111;
+  width: 100%;
+  font-weight: bolder;
+  padding: 0 .2rem;
+}
+
+.chat .message {
+  margin-bottom: 1rem;
+  background-color: #FED7D7;
+  border-radius: 5px;
+  padding: 1rem;
+  width: max-content;
+}
+
+.chat .message-name {
+  color: #718096;
+}
+
+.chat .message-time {
+  font-weight: 500;
 }
 
 @media screen and (min-width: 700px) {

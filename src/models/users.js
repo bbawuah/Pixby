@@ -42,6 +42,9 @@ const userSchema = new mongoose.Schema({
       type: String,
     },
   ],
+  chatID: {
+    type: Number,
+  },
   liked: [
     {
       type: String,
@@ -57,7 +60,7 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   tokens: [
     {
@@ -97,15 +100,27 @@ userSchema.methods.generateAuthToken = async function () {
   return token;
 };
 
+userSchema.methods.generateChatID = async function(){
+  const user = this;
+
+  const chat = Math.floor(Math.random() * 1000);
+
+  user.chatID = chat;
+
+  await user.save();
+
+  return console.log(`${user.name} your chat id is ${chat}`);
+}
+
 userSchema.statics.findByCredentials = async (name, password) => {
   const user = await User.findOne({ name });
 
   if (!user) {
-    throw new Error('This user does not exist..');
+    throw new Error("This user does not exist..");
   }
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    throw new Error('Incorrect password..');
+    throw new Error("Incorrect password..");
   }
   return user;
 };

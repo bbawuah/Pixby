@@ -28,8 +28,8 @@ searchBar.addEventListener('keyup', function(e){
     console.log(data);
     data.forEach((user) => { // Loop through the array, for each user insert that data in HTML
 
-      
-      container.insertAdjacentHTML("beforeend", ` 
+
+      container.insertAdjacentHTML("beforeend", `
 
       <li>
         <section>

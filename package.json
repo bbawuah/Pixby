@@ -40,5 +40,8 @@
     "eslint-plugin-import": "^2.20.2",
     "mocha": "^8.0.1",
     "nodemon": "^2.0.4"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }

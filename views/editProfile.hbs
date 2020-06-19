@@ -1,0 +1,41 @@
+{{#with user}}
+<div class="fillimage">
+  <img src='../img/components/{{imgOld}}' alt="">
+</div>
+{{/with}}
+{{>header}}
+<div class="gradient">
+  {{#with user}}
+  <figure>
+    <figcaption class="profilecap">
+      <div>
+        <h1>EDIT PROFIIIIIIIILE</h1>
+        <p>{{name}}, {{age}}</p>
+        <p>{{location}}</p>
+        <p>{{profession}}</p>
+      </div>
+      <div class="chat-btn">
+        <img src="../img/components/chat-white.svg" alt="">
+      </div>
+    </figcaption>
+  </figure>
+
+
+  <div class="textbox">
+    <article class="about">
+      <h2>About</h2>
+      <p>{{about}}</p>
+    </article>
+
+    <article class="interest">
+      <h2>Interest</h2>
+      {{#each interest as |item|}}
+      <button class="btn_interest">
+        <p>{{'item'}}</p>
+      </button>
+      {{/each}}
+    </article>
+  </div>
+</div>
+</div>
+{{/with}}

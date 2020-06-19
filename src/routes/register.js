@@ -2,7 +2,6 @@ const express = require("express");
 // Laad Express in
 const register = new express.Router(); // Create nieuwe instance of register
 
-const sharp = require("sharp"); // Package for resizing images
 const multer = require("multer");
 
 const auth = require("../authenticate/auth");
@@ -16,6 +15,7 @@ register.post(
   "/user",
   upload.fields([{ name: "baby-img" }, { name: "old-image" }]),
   async (req, res) => {
+
     let babyPhoto = "";
     let oldPhoto = "";
 
@@ -25,7 +25,6 @@ register.post(
     for (let i = 0; i < rawImages.length; i++) {
       babyPhoto = rawImages[0][0].filename;
       oldPhoto = rawImages[1][0].filename;
-
     }
   
 
@@ -46,23 +45,26 @@ register.post(
 
       res.status(201).send({ user, token }); // Stuur object van user en token terug
     } catch (e) {
-      console.log(e);
-      res.status(400).send(e); // If something goes wrong, send an error back to client
+      console.log(e)
+      console.log(e.message);
+      res.status(400).send({error: e}); // If something goes wrong, send an error back to client
     }
   }
 );
 
 // LOGIN register
-register.post("/users/login", async (req, res) => {
+register.post("/users/login", upload.fields([{ name: "baby-img" }, { name: "old-image" }]),async (req, res) => {
+
+
   try {
     const user = await User.findByCredentials(
-      req.body.email,
+      req.body.name.toLowerCase(),
       req.body.password
-    ); // finding a user by email with matching password
-    console.log(user); // Printing out the user
+    ); 
+    // finding a user by email with matching password
+  
     const token = await user.generateAuthToken(); // Generating an authentication token for the login session
 
-    //   res.cookie('jwt', token, { httpOnly: true, domain:process.env.COOKIE_DOMAIN });
     res.send({ user, token }); // Sending back the user with the token
   } catch (e) {
     console.log(e.message); // Consoling the error

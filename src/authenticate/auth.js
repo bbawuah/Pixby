@@ -1,13 +1,9 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/users");
-const { use } = require("../routes/chatRoom");
 
 const auth = async (req, res, next) => {
-  // Why does this work thooo lol..
-  //   https://stackoverflow.com/questions/43325754/how-to-verify-header-exist
 
   const token = req.cookies["access_token"];
-  console.log(req.cookies["access_token"]);
 
   try {
     // Check JWT token
@@ -37,7 +33,5 @@ const auth = async (req, res, next) => {
     res.redirect('http://localhost:3000');
   }
 };
-
-// The Complete Node.js Developer Course (3rd Edition) - Andrew Mead
 
 module.exports = auth;

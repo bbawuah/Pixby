@@ -5,7 +5,17 @@
 
     <h2 id="welcome">Hi, {{user.name}}!</h2>
     <img src="img/components/{{user.imgOld}}" id="img" alt="">
+
   </div>
+
+
+  <div id="searchContainer">
+    <form id="searchProfession">
+      <input type="text" name="term" placeholder="Search profession ..." id="search">
+      </form>
+    </div>
+  
+
   <ul class="container">
     {{#each users}}
     <li>
@@ -14,7 +24,7 @@
           <figcaption class="card_cap">
             <h2>{{name}}, {{age}}</h2>
             <h3>{{location}}</h3>
-            <h3>{{profession}}</h3>
+            <h3 class="userProfession">{{profession}}</h3>
           </figcaption>
         </figure>
         <form action="/match" method="POST">
@@ -39,4 +49,5 @@
     {{/each}}
   </ul>
 </body>
+
 {{>footer}}

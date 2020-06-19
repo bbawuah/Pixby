@@ -4,14 +4,14 @@ const hbs = require("hbs");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express(); // opstarten van express applicatie
-const port = 4000;
+const port = 3000;
 const path = require("path");
 
 const register = require("./src/routes/register");
 const auth = require('./src/authenticate/auth');
 const match = require("./src/routes/likeAndMatch");
 const chatRoom = require("./src/routes/chatRoom");
-const findUser = require("./src/routes/searchUser");
+const search = require("./src/routes/searchUser");
 const profileUser = require("./src/routes/profile");
 const home = require('./src/routes/home');
 const error = require('./src/routes/error');
@@ -46,17 +46,20 @@ app
     })
   )
   .use(register)
+  .use(search)
   .use(cookieParser())
 
 hbs.registerPartials(path.join(__dirname, "/views/partials"));
 
 
 app
-  .get('/', index)
+  .get('/', (req,res) => {
+    res.render('index')
+  })
   .get("/home", auth, home)
   .post("/match", auth, match)
   .post("/profile/:id", auth, profileUser)
   .get("/*", error);
-
+ 
 // Application running on port...
-app.listen(process.env.PORT || 3000, () => console.log(`app draait op port ${port}!!`));
+app.listen(process.env.PORT || port, () => console.log(`app draait op port ${port}!!`));

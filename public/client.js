@@ -17,7 +17,7 @@ searchBar.addEventListener('keyup', function(e){
   var div = document.getElementsByClassName('card_cap');
   var profession = document.getElementsByClassName('userProfession');
 
-  const url = `http://localhost:3000/search:${term}`
+  const url = `/search:${term}`
   console.log(url)
 
   fetch(url).then((res) => {
@@ -28,8 +28,8 @@ searchBar.addEventListener('keyup', function(e){
     console.log(data);
     data.forEach((user) => { // Loop through the array, for each user insert that data in HTML
 
-      
-      container.insertAdjacentHTML("beforeend", ` 
+
+      container.insertAdjacentHTML("beforeend", `
 
       <li>
         <section>

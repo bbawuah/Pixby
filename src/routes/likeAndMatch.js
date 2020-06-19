@@ -72,6 +72,7 @@ async function match(req, res, next) {
       updateLikedUsers(like, signedUser)
       console.log(match[0])
       console.log(`you have a match with ${match[0].name} `);
+      console.log(match)
       res.render("match", {
         users: match,
       });

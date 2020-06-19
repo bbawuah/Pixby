@@ -2,10 +2,8 @@
 
 <body class="home">
   <div class="greet">
-
     <h2 id="welcome">Hi, {{user.name}}!</h2>
-    <img src="img/components/{{user.imgOld}}" id="img" alt="">
-
+    <a href="/editProfile">Edit Profile</a>
   </div>
 
 
@@ -14,7 +12,7 @@
       <input type="text" name="term" placeholder="Search profession ..." id="search">
       </form>
     </div>
-  
+
 
   <ul class="container">
     {{#each users}}

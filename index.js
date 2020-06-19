@@ -10,7 +10,7 @@ const Filter = require("bad-words");
 const generateMessage = require("./src/utils/messages");
 // Application running on port...
 
-const expressServer = app.listen(port, () =>
+const expressServer = app.listen(process.env.PORT || port, () =>
   console.log(`app draait op port ${port}!!`)
 );
 const io = require("socket.io")(expressServer);
@@ -126,6 +126,3 @@ io.on("connection", (socket) => {
     io.emit("message", { text: "Your partner has left!" });
   });
 });
-
-// // Application running on port...
-// app.listen(process.env.PORT || port, () => console.log(`app draait op port ${port}!!`));

@@ -38,7 +38,7 @@ const { ObjectId } = require("mongodb");
 (async () => {
   const users = await User.find({}); //User refers to our User model. We don't have to use db.collection anymore
 
-  console.log(users);
+  // console.log(users);
 })();
 
 // middleware

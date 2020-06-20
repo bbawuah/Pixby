@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 /*
 Om gebruik te maken van mongoose middlewares moet ik mijn eigen schema aanmaken
@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     type: Number,
     validate(value) {
       if (value <= 16) {
-        throw new Error("Je bent te jong voor deze applicatie");
+        throw new Error('Je bent te jong voor deze applicatie')
       }
     },
   },
@@ -70,7 +70,7 @@ const userSchema = new mongoose.Schema({
       },
     },
   ],
-});
+})
 
 // Creating custom method on our userSchema
 // https://mongoosejs.com/docs/2.7.x/docs/methods-statics.html
@@ -79,51 +79,53 @@ const userSchema = new mongoose.Schema({
  *
  *https://mongoosejs.com/docs/2.7.x/docs/methods-statics.html
  * Each Schema can define instance and static methods for its model.
- * Statics are pretty much the same as methods but allow for defining functions that exist directly on your Model.
+ * Statics are pretty much the same as methods but allow for defining
+ * functions that exist directly on your Model.
  */
 
-//  Hier genereer ik dus een nieuwe token voor de gebruiker zodra hij inlogt. Deze token ga ik later gebruiken voor authenticatie
+//  Hier genereer ik dus een nieuwe token voor de gebruiker
+// zodra hij inlogt. Deze token ga ik later gebruiken voor authenticatie
 userSchema.methods.generateAuthToken = async function () {
-  const user = this; // Makkelijker om naar te verwijzen
+  const user = this // Makkelijker om naar te verwijzen
   const token = jwt.sign(
     {
       _id: user._id.toString(),
     } /* id is ObjectId(5ed0ef97405ebd524ada62d8).. jwt verwacht een string */,
-    process.env.JWT_SECRET
-  );
+    process.env.JWT_SECRET,
+  )
 
   // Concat returned een nieuwe array samengevoegd met de nieuwe waardes
-  user.tokens = user.tokens.concat({ token }); // Zie user mode
+  user.tokens = user.tokens.concat({ token }) // Zie user mode
 
-  await user.save(); // Sla de token op in mongo
+  await user.save() // Sla de token op in mongo
 
-  return token;
-};
+  return token
+}
 
-userSchema.methods.generateChatID = async function(){
-  const user = this;
+userSchema.methods.generateChatID = async function () {
+  const user = this
 
-  const chat = Math.floor(Math.random() * 1000);
+  const chat = Math.floor(Math.random() * 1000)
 
-  user.chatID = chat;
+  user.chatID = chat
 
-  await user.save();
+  await user.save()
 
-  return console.log(`${user.name} your chat id is ${chat}`);
+  return console.log(`${user.name} your chat id is ${chat}`)
 }
 
 userSchema.statics.findByCredentials = async (name, password) => {
-  const user = await User.findOne({ name });
+  const user = await User.findOne({ name })
 
   if (!user) {
-    throw new Error("This user does not exist..");
+    throw new Error('This user does not exist..')
   }
-  const isMatch = await bcrypt.compare(password, user.password);
+  const isMatch = await bcrypt.compare(password, user.password)
   if (!isMatch) {
-    throw new Error("Incorrect password..");
+    throw new Error('Incorrect password..')
   }
-  return user;
-};
+  return user
+}
 
 /**
  pre() is een functie die ik nu kan roepen op mijn userSchema
@@ -134,27 +136,28 @@ userSchema.statics.findByCredentials = async (name, password) => {
  De functie wordt in een andere contect geroepen.
  Een arrow function gaat hier veel gezeik opleveren omdat die geen this binding hebben
  */
-userSchema.pre("save", async function (next) {
+userSchema.pre('save', async function (next) {
   /*
   Hetgeen wat ik meegeef aan de model. Dat is dus de user met de data van req.body
   zie server.js voor de kleine api route waar ik users aanmaak
   */
-  const user = this;
+  const user = this
 
   /*
 Alleen het wachtwoord wijzigt willen we de hash functie toepassen.
 Dus niet elke keer als de user inlogt!
 */
-  if (user.isModified("password")) {
-    user.password = await bcrypt.hash(user.password, 8); // Zie playground brcypt.js
+  if (user.isModified('password')) {
+    user.password = await bcrypt.hash(user.password, 8) // Zie playground brcypt.js
   }
 
-  // Net als met middlewares in express, wordt next geroepen als de middleware is afgerond en model in dit geval kan worden opgeslagen
+  // Net als met middlewares in express, wordt next geroepen als
+  // de middleware is afgerond en model in dit geval kan worden opgeslagen
   // Als next niet wordt geroepen, blijft de middleware hangen
-  next();
-});
+  next()
+})
 
 // Data validation & data sanitization
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema)
 
-module.exports = User;
+module.exports = User

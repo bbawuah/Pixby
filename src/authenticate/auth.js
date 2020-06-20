@@ -29,7 +29,7 @@ const auth = async (req, res, next) => {
     // If authentication fails, send error to authenticate to user
     console.log('Eerst inloggguuuh')
     res.status(401)
-    res.redirect('http://localhost:3000')
+    res.redirect('/register')
   }
 }
 

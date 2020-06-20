@@ -23,7 +23,8 @@ const search = require('./src/routes/searchUser')
 const profileUser = require('./src/routes/profile')
 const home = require('./src/routes/home')
 const error = require('./src/routes/error')
-const index = require('./src/routes/index')
+const index = require('./src/routes/index');
+const registerPage = require('./src/routes/registerPage')
 // Load in mongoose and make connection to database
 require('./src/db/mongoose.js')
 
@@ -57,6 +58,7 @@ hbs.registerPartials(path.join(__dirname, '/views/partials'))
 
 app
   .get('/', index)
+  .get('/register', registerPage)
   .get('/home', auth, home)
   .post('/match', auth, match)
   .post('/profile/:id', auth, profileUser)

@@ -60,6 +60,10 @@ section {
   flex-direction: row;
 }
 
+.match{
+  flex-direction: column;
+}
+
 .match_photo {
   margin: 4em;
   padding-left: 3em;

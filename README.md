@@ -11,7 +11,7 @@ Welcome to our project for Blok-tech. The concept is based on the generic idea o
 ### Brian
 > "When I choose a Netflix episode, I want to have a Netflix-partner so I have company while I am Netflixing"
 #### :memo: Topic
-[Implement Unit Testing](https://github.com/bbawuah/Pixby/wiki/Implement-Unit-Testing)
+[Password and JSON Webtokens](https://github.com/bbawuah/Pixby/wiki/Password-and-JSON-Webtokens)
 
 ***
 

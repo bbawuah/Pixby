@@ -53,9 +53,7 @@ hbs.registerPartials(path.join(__dirname, "/views/partials"));
 
 
 app
-  .get('/', (req,res) => {
-    res.render('index')
-  })
+  .get('/', index)
   .get("/home", auth, home)
   .post("/match", auth, match)
   .post("/profile/:id", auth, profileUser)

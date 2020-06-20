@@ -57,7 +57,12 @@ button,
 }
 
 section {
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.match_photo {
+  margin: 4em;
+  padding-left: 3em;
 }
 
 /* FORM */

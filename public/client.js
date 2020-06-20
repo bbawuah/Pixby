@@ -17,7 +17,7 @@ searchBar.addEventListener('keyup', function(e){
   var div = document.getElementsByClassName('card_cap');
   var profession = document.getElementsByClassName('userProfession');
 
-  const url = `http://localhost:3000/search:${term}`
+  const url = `/search:${term}`
   console.log(url)
 
   fetch(url).then((res) => {
@@ -28,8 +28,8 @@ searchBar.addEventListener('keyup', function(e){
     console.log(data);
     data.forEach((user) => { // Loop through the array, for each user insert that data in HTML
 
-      
-      container.insertAdjacentHTML("beforeend", ` 
+
+      container.insertAdjacentHTML("beforeend", `
 
       <li>
         <section>
@@ -43,7 +43,7 @@ searchBar.addEventListener('keyup', function(e){
           <form action="/match" method="POST">
             <div class="decline">
               <div class="white-btn">
-                <input type="submit" value="{{_id}}" src="img/components/cross.svg" name="dislike">
+                <input type="submit" value=${user._id} src="img/components/cross.svg" name="dislike">
               </div>
             </div>
             <div class="superlike">
@@ -53,7 +53,7 @@ searchBar.addEventListener('keyup', function(e){
             </div>
             <div class="like">
               <div class="white-btn">
-                <input type="submit" value="{{_id}}" src="img/components/heart.svg" name="like">
+                <input type="submit" value=${user._id} src="img/components/heart.svg" name="like">
               </div>
             </div>
           </form>

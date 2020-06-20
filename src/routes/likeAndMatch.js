@@ -1,4 +1,5 @@
 const User = require("../models/users");
+const { ObjectId } = require("mongodb");
 
 
 // When you like or dislike someone, the whole object
@@ -12,7 +13,7 @@ async function updateLikedUsers(match, user) {
 
   try {
     await User.updateOne({
-      _id: user._id,
+      _id: ObjectId(user._id),
     }, {
       $push: {
         liked: match,
@@ -34,7 +35,7 @@ async function updateDislikedUsers(noMatch, user) {
 
   try {
     await User.updateOne({
-      _id: user._id,
+      _id: ObjectId(user._id),
     }, {
       $push: {
         disliked: noMatch,
@@ -54,7 +55,7 @@ async function match(req, res, next) {
 
   try {
     const signedUser = await User.findOne({
-      _id: req.user._id,
+      _id: ObjectId(req.user._id),
     });
 
 
@@ -66,12 +67,16 @@ async function match(req, res, next) {
       _id: like,
     });
 
+    console.log(`like is ${like}`)
+    console.log(match)
+
     // if the match matches the liked user, it renders to the match page
     // or else when the user is disliked the user redirects to the home page
     if (match[0]) {
       updateLikedUsers(like, signedUser)
       console.log(match[0])
       console.log(`you have a match with ${match[0].name} `);
+      console.log(match)
       res.render("match", {
         users: match,
       });

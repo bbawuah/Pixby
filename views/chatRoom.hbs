@@ -1,0 +1,30 @@
+{{>header}}
+
+<body>
+
+
+        <section class="chat">
+            <div id="sidebar" class="chat__sidebar">
+
+            </div>
+            <div class="chat__main">
+                <div id="messages" class="chat__messages">
+
+                </div>
+
+                <div class="compose">
+                    <form action="" id="formMessage">
+                        <input id="input" name="message" type="text" required autocomplete="off" placeholder="Type here">
+                        <button id="btn" >Send</button>
+                    </form>
+                    <!-- Client side code of Socket io in order to communicatie from client side -->
+                </div>
+            </div>
+
+        </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+
+
+{{>footer}}

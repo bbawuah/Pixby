@@ -4,14 +4,14 @@
 
 Hola!
 
-Welcome to our project for Blok-tech. The concept is based on the generic idea of a dating app, but with a twist. On Pixby, users are only allowed to use baby pictures. That way, you get to see their natural faces without any applied filters/edits. Biases are based on the baby pictures :). 
+Welcome to our project for Blok-tech. The concept is based on the generic idea of a dating app, but with a twist. On Pixby, users are only allowed to use baby pictures. That way, you get to see their natural faces without any applied filters/edits. Biases are based on the baby pictures :).
 
 ## :iphone: Features
 
 ### Brian
 > "When I choose a Netflix episode, I want to have a Netflix-partner so I have company while I am Netflixing"
 #### :memo: Topic
-[Implement Unit Testing](https://github.com/bbawuah/Pixby/wiki/Implement-Unit-Testing)
+[Password and JSON Webtokens](https://github.com/bbawuah/Pixby/wiki/Password-and-JSON-Webtokens)
 
 ***
 
@@ -22,12 +22,12 @@ Welcome to our project for Blok-tech. The concept is based on the generic idea o
 
 ***
 
-### Marco 
+### Marco
 > "When I click on a profile, I want to see the important characteristics of that person directly. That way I can make a fast decision if I really like that person."
 #### :memo: Topic
 [Deploy Node App](https://github.com/bbawuah/Pixby/wiki/Deploy-Node-App)
 
-***
+*** 
 
 ### Naomi
 > "When I am looking for a match, I want to be able to search for profiles with the same interests, so I can find people who are a possible match"

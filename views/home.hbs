@@ -2,10 +2,8 @@
 
 <body class="home">
   <div class="greet">
-
     <h2 id="welcome">Hi, {{user.name}}!</h2>
-    <img src="img/components/{{user.imgOld}}" id="img" alt="">
-
+    <a href="/editProfile">Edit Profile</a>
   </div>
 
 
@@ -14,7 +12,7 @@
       <input type="text" name="term" placeholder="Search profession ..." id="search">
       </form>
     </div>
-  
+
 
   <ul class="container">
     {{#each users}}
@@ -30,7 +28,7 @@
         <form action="/match" method="POST">
           <div class="decline">
             <div class="white-btn">
-              <input type="submit" value="{{_id}}" src="img/components/cross.svg" name="dislike">
+              <input type="submit" value={{_id}} src="img/components/cross.svg" name="dislike">
             </div>
           </div>
           <div class="superlike">
@@ -40,7 +38,7 @@
           </div>
           <div class="like">
             <div class="white-btn">
-              <input type="submit" value="{{_id}}" src="img/components/heart.svg" name="like">
+              <input type="submit" value={{_id}} src="img/components/heart.svg" name="like">
             </div>
           </div>
         </form>

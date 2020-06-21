@@ -115,13 +115,23 @@ body {
 
 .greet {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   max-width: 500px;
   margin-top: 3rem;
   padding: 0 1em;
 }
 
+.greet a{
+  color: var(--mainColor);
+  text-decoration: none;
+  transition: all .3s ease-in;
+}
+
+.greet a:hover{
+  color: var(--accentColor);
+}
 
 .greet img {
   width: 100px;
@@ -458,7 +468,7 @@ figcaption p:last-child {
 
 .fillimage img {
   position: absolute;
-  height: 100%;
+  height: 75vh;
   /* CHANGED */
   width: 100%;
   object-fit: cover;
@@ -467,7 +477,7 @@ figcaption p:last-child {
 .gradient {
   position: relative;
   width: 100%;
-  min-height: 100vh; 
+  min-height: 75vh;
   /* CHANGED */
 }
 
@@ -504,6 +514,56 @@ figcaption {
   z-index: 6;
 }
 
+/**********************
+    EDIT PROFILE
+**********************/
+
+body>form>input, body>form>textarea, body>form>label{
+  width: 50%;
+  min-width: 30em;
+  margin: 0 auto;
+  display: block;
+  font-size: .9em;
+}
+
+body>form>label{
+  margin: .3em auto .7em auto;
+}
+
+body>form>input, body>form>textarea{
+  padding: .5em;
+  margin-bottom: 1em;
+  background: var(--accentColor);
+  border-radius: 5px;
+  border: none;
+}
+
+.editProfileButton{
+  width: 20em;
+  min-width: 10em;
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+  background-color: var(--mainColor);
+  color: var(--accentColor2);
+  border: none;
+  border-radius: 3.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  margin: 1em auto 0 auto;
+}
+
+.editProfile h1{
+  text-align: center;
+  margin: 0 auto 1em auto;
+}
+
+
+
+/**********************
+    CHATPAGE
+**********************/
 .chatID .form-container form{
   display: flex;
   flex-direction: column;
@@ -621,11 +681,12 @@ figcaption {
     justify-content: space-between;
     flex-direction: row;
     width: 50%;
+    margin-top: 20vh;
   }
 
   .fillimage img {
     width: 600px;
-    height: 100vh;
+    height: 85vh;
     z-index: -1;
   }
 

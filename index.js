@@ -22,6 +22,9 @@ const chat = require('./src/routes/chat')
 const chatRoom = require('./src/routes/chatRoom')
 const search = require('./src/routes/searchUser')
 const profileUser = require('./src/routes/profile')
+// const editProfile = require('./src/routes/editProfile')
+const editProfilePage = require('./src/routes/editProfilePage')
+const updateProfile = require('./src/routes/updateProfile')
 const home = require('./src/routes/home')
 const error = require('./src/routes/error')
 const index = require('./src/routes/index')
@@ -42,12 +45,15 @@ const User = require('./src/models/users');
 
 // middleware
 hbs.registerPartials(path.join(__dirname, '/views/partials'))
+
 app
   .get('/', index)
   .get('/register', registerPage)
   .get('/home', auth, home)
   .post('/match', auth, match)
   .post('/profile/:id', auth, profileUser)
+ .get('/editProfile', auth, editProfilePage)
+  .post('/updateProfile', auth, updateProfile)
   .get('/chat', auth, chat)
   .get('/chatRoom', auth, chatRoom)
   .get('/*', error)
@@ -64,7 +70,6 @@ app
   .use(search)
   .use(cookieParser());
 
-let roomId = "";
 
 
 io.on('connection', (socket) => {

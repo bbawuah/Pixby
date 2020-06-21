@@ -1,41 +1,21 @@
-{{#with user}}
-<div class="fillimage">
-  <img src='../img/components/{{imgOld}}' alt="">
-</div>
-{{/with}}
 {{>header}}
-<div class="gradient">
-  {{#with user}}
-  <figure>
-    <figcaption class="profilecap">
-      <div>
-        <h1>EDIT PROFIIIIIIIILE</h1>
-        <p>{{name}}, {{age}}</p>
-        <p>{{location}}</p>
-        <p>{{profession}}</p>
-      </div>
-      <div class="chat-btn">
-        <img src="../img/components/chat-white.svg" alt="">
-      </div>
-    </figcaption>
-  </figure>
+<body class="editProfile">
+	<h1>Edit your profile page</h1>
+	<form action="/updateProfile" method="POST" class="profileForm">
+					<label for="age">Age</label>
+					<input type="number" name="age" id="age" required />
+          <!-- <p id="ageValue"></p> -->
 
+					<label for="location">Location</label>
+					<input type="text" name="location" id="location" required />
 
-  <div class="textbox">
-    <article class="about">
-      <h2>About</h2>
-      <p>{{about}}</p>
-    </article>
+					<label for="profession">Profession</label>
+					<input type="text" name="profession" id="profession" required />
 
-    <article class="interest">
-      <h2>Interest</h2>
-      {{#each interest as |item|}}
-      <button class="btn_interest">
-        <p>{{'item'}}</p>
-      </button>
-      {{/each}}
-    </article>
-  </div>
-</div>
-</div>
-{{/with}}
+					<label for="about">About you</label>
+					<textarea name="about" id="about" required></textarea>
+
+					<input class="editProfileButton" type="submit"	value="Update profiel" required	/>
+				</form>
+</body>
+{{>footer}}

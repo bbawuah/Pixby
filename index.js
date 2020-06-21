@@ -19,11 +19,12 @@ const register = require('./src/routes/register')
 const auth = require('./src/authenticate/auth')
 const match = require('./src/routes/likeAndMatch')
 const chat = require('./src/routes/chat')
+const chatRoom = require('./src/routes/chatRoom')
 const search = require('./src/routes/searchUser')
 const profileUser = require('./src/routes/profile')
 const home = require('./src/routes/home')
 const error = require('./src/routes/error')
-const index = require('./src/routes/index');
+const index = require('./src/routes/index')
 const registerPage = require('./src/routes/registerPage')
 // Load in mongoose and make connection to database
 require('./src/db/mongoose.js')
@@ -40,7 +41,16 @@ const User = require('./src/models/users');
 })()
 
 // middleware
+hbs.registerPartials(path.join(__dirname, '/views/partials'))
 app
+  .get('/', index)
+  .get('/register', registerPage)
+  .get('/home', auth, home)
+  .post('/match', auth, match)
+  .post('/profile/:id', auth, profileUser)
+  .get('/chat', auth, chat)
+  .get('/chatRoom', auth, chatRoom)
+  .get('/*', error)
   .set('view engine', 'hbs')
   .set('views', 'views')
   .use(express.static('public'))
@@ -52,32 +62,10 @@ app
   )
   .use(register)
   .use(search)
-  .use(cookieParser())
+  .use(cookieParser());
 
-hbs.registerPartials(path.join(__dirname, '/views/partials'))
+let roomId = "";
 
-app
-  .get('/', index)
-  .get('/register', registerPage)
-  .get('/home', auth, home)
-  .post('/match', auth, match)
-  .post('/profile/:id', auth, profileUser)
-  .get('/chat', auth, chat)
-  .get('/chatRoom', auth, chatRoom)
-  .get('/*', error)
-
-let roomId = ''
-let userName = ''
-
-function chatRoom(req, res) {
-  console.log(req.query.room)
-  roomId = req.query.room
-  userName = req.user.name
-
-  res.render('chatRoom', {
-    title: 'Chat room',
-  })
-}
 
 io.on('connection', (socket) => {
   // Als er een connectie is met socket io doe dan dit..
@@ -97,7 +85,9 @@ io.on('connection', (socket) => {
     // Zodra een nieuwe gebruiker in de room komt stuur dan een notificatie naar de andere gebruiker
     socket.broadcast
       .to(roomId)
-      .emit('message', { text: 'Your partner has joined!' })
+      .emit('message', {
+        text: 'Your partner has joined!'
+      })
   })
   // Emit is een method die iets kan terug sturen naar de gebruiker
   // Zie chat.js
@@ -122,6 +112,8 @@ io.on('connection', (socket) => {
 
   // Wanneer een gebruiker de chat verlaat, verstuur dan een bericht dat de gebruiker weg is
   socket.on('disconnect', () => {
-    io.emit('message', { text: 'Your partner has left!' })
+    io.emit('message', {
+      text: 'Your partner has left!'
+    })
   })
-})
+});

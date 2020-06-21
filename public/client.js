@@ -1,35 +1,31 @@
 
 // https://www.youtube.com/watch?v=3NG8zy0ywIk&list=PL4cUxeGkcC9gfoKa5la9dsdCNpuey2s-V&index=17&t=107s
 
-const list = document.querySelectorAll('.card_cap .userProfession');
+const list = document.querySelectorAll('.card_cap .userProfession')
 console.log(list)
 
-const searchBar = document.forms['searchProfession'].querySelector('input');
-const container = document.getElementsByClassName('container')[0];
+const searchBar = document.forms.searchProfession.querySelector('input')
+const container = document.getElementsByClassName('container')[0]
 
 console.log(container)
 
-searchBar.addEventListener('keyup', function(e){
-  e.preventDefault();
-  const term = e.target.value.toLowerCase();
-  console.log(term);
+searchBar.addEventListener('keyup', (e) => {
+  e.preventDefault()
+  const term = e.target.value.toLowerCase()
+  console.log(term)
 
-  var div = document.getElementsByClassName('card_cap');
-  var profession = document.getElementsByClassName('userProfession');
+  const div = document.getElementsByClassName('card_cap')
+  const profession = document.getElementsByClassName('userProfession')
 
   const url = `/search:${term}`
   console.log(url)
 
-  fetch(url).then((res) => {
-    return res.json()
-  }).then((data) => { // If there is a user with the term
-    container.innerHTML = ""; // Delete everything
+  fetch(url).then((res) => res.json()).then((data) => { // If there is a user with the term
+    container.innerHTML = '' // Delete everything
 
-    console.log(data);
+    console.log(data)
     data.forEach((user) => { // Loop through the array, for each user insert that data in HTML
-
-
-      container.insertAdjacentHTML("beforeend", `
+      container.insertAdjacentHTML('beforeend', `
 
       <li>
         <section>
@@ -43,7 +39,7 @@ searchBar.addEventListener('keyup', function(e){
           <form action="/match" method="POST">
             <div class="decline">
               <div class="white-btn">
-                <input type="submit" value="{{_id}}" src="img/components/cross.svg" name="dislike">
+                <input type="submit" value=${user._id} src="img/components/cross.svg" name="dislike">
               </div>
             </div>
             <div class="superlike">
@@ -53,7 +49,7 @@ searchBar.addEventListener('keyup', function(e){
             </div>
             <div class="like">
               <div class="white-btn">
-                <input type="submit" value="{{_id}}" src="img/components/heart.svg" name="like">
+                <input type="submit" value=${user._id} src="img/components/heart.svg" name="like">
               </div>
             </div>
           </form>
@@ -63,12 +59,10 @@ searchBar.addEventListener('keyup', function(e){
 
     `)
     })
-    console.log(data);
+    console.log(data)
   })
 
-  Array.from(profession).forEach(function(profession){
+  Array.from(profession).forEach((profession) => {
     console.log(profession)
-
   })
-
 })

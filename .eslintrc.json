@@ -19,13 +19,18 @@
             }
         ],
         "semi": [2, "never"],
-        "comma-dangle": ["off"],
-        "indent": ["off"],
-        "no-console": ["off"],
-        "arrow-body-style": ["as-needed"],
-        "import/newline-after-import": ["off"],
-        "prefer-arrow-callback": ["error", "always"],
-        "prefer-const": ["error", "always"],
+        "comma-dangle": ["error"],
+        "indent": ["error"],
+        "no-console": ["error"],
+        "arrow-body-style": ["error"],
+        "import/newline-after-import": ["error"],
+        "prefer-arrow-callback": ["error", {
+            "allowNamedFunctions": true
+        }],
+        "prefer-const": ["error", {
+            "destructuring": "any",
+            "ignoreReadBeforeAssign": false
+        }],
         "consistent-return": ["warn"]
     }
 }

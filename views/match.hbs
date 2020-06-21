@@ -3,12 +3,12 @@
 <figure class="match_image">
   <img src="img/components/{{imgMatch}}" alt="">
 </figure>
-<section>
+<section class="match">
   <h1>You've got a match! </h1>
   <form method="POST" action="/profile/{{_id}}">
     <input type="submit" value="Reveal Idendity" name="revealid" class="viewProfile">
   </form>
-  <a href="/"><button type="button" class='keepswiping'>Keep on swiping</button></a>
+  <a href="/home"><button type="button" class='keepswiping'>Keep on swiping</button></a>
 </section>
 {{/each}}
 {{>footer}}

@@ -115,13 +115,23 @@ body {
 
 .greet {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   max-width: 500px;
   margin-top: 3rem;
   padding: 0 1em;
 }
 
+.greet a{
+  color: var(--mainColor);
+  text-decoration: none;
+  transition: all .3s ease-in;
+}
+
+.greet a:hover{
+  color: var(--accentColor);
+}
 
 .greet img {
   width: 100px;
@@ -458,7 +468,7 @@ figcaption p:last-child {
 
 .fillimage img {
   position: absolute;
-  height: 100%;
+  height: 75vh;
   /* CHANGED */
   width: 100%;
   object-fit: cover;
@@ -467,7 +477,7 @@ figcaption p:last-child {
 .gradient {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 75vh;
   /* CHANGED */
 }
 
@@ -671,11 +681,12 @@ body>form>input, body>form>textarea{
     justify-content: space-between;
     flex-direction: row;
     width: 50%;
+    margin-top: 20vh;
   }
 
   .fillimage img {
     width: 600px;
-    height: 100vh;
+    height: 85vh;
     z-index: -1;
   }
 

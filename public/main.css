@@ -117,10 +117,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 260px;
+  max-width: 500px;
   margin-top: 3rem;
   padding: 0 1em;
 }
+
 
 .greet img {
   width: 100px;

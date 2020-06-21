@@ -105,7 +105,7 @@ io.on('connection', (socket) => {
   // Op het event sendMessage, doe dan hetgeen in de callback..
   socket.on('sendMessage', (message, callback) => {
     const filter = new Filter() // New instance van filter https://www.npmjs.com/package/bad-words
-    const cleanMsg = `${userName} zegt: ${filter.clean(message)}`
+    const cleanMsg = filter.clean(message)
 
     console.log(cleanMsg)
 

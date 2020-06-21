@@ -48,6 +48,7 @@ hbs.registerPartials(path.join(__dirname, '/views/partials'))
 app
   .set('view engine', 'hbs')
   .set('views', 'views')
+  .use(cookieParser())
   .use(express.static('public'))
   .use(express.json()) // gebruikt deze map (public) om html bestanden te serveren
   .use(
@@ -57,7 +58,6 @@ app
   )
   .use(register)
   .use(search)
-  .use(cookieParser())
   .get('/', index)
   .get('/register', registerPage)
   .get('/home', auth, home)
@@ -70,7 +70,6 @@ app
   .get('/*', error)
 
 let roomId = ''
-let userName = ''
 
 function chatRoom(req, res) {
   console.log(req.query.room)

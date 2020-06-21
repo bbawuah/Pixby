@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 /*
-Om gebruik te maken van mongoose middlewares moet ik mijn eigen schema aanmaken
-en die vervolgens meegeven aan het user model.
-Op de userSchema kan ik dam verschillende methods op uitvoeren
+To use mongoose middlewares I need to create my own schema
+and pass it to the user model
+With this in place I can use different methods on my userSchema
 */
 
 const userSchema = new mongoose.Schema({
@@ -83,21 +83,21 @@ const userSchema = new mongoose.Schema({
  * functions that exist directly on your Model.
  */
 
-//  Hier genereer ik dus een nieuwe token voor de gebruiker
-// zodra hij inlogt. Deze token ga ik later gebruiken voor authenticatie
+//  Here I generate a new token for the user
 userSchema.methods.generateAuthToken = async function () {
-  const user = this // Makkelijker om naar te verwijzen
+  // Makes it easier to refer to
+  const user = this 
   const token = jwt.sign(
     {
       _id: user._id.toString(),
-    } /* id is ObjectId(5ed0ef97405ebd524ada62d8).. jwt verwacht een string */,
+    } /* id is ObjectId(5ed0ef97405ebd524ada62d8).. jwt expects a string */,
     process.env.JWT_SECRET,
   )
 
-  // Concat returned een nieuwe array samengevoegd met de nieuwe waardes
-  user.tokens = user.tokens.concat({ token }) // Zie user mode
+  // Concat returned a new array with all the values
+  user.tokens = user.tokens.concat({ token }) // See user mode
 
-  await user.save() // Sla de token op in mongo
+  await user.save() // Save token in mongo
 
   return token
 }

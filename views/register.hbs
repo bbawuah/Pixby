@@ -85,7 +85,7 @@
 
             const formData = new FormData(loginForm);
 
-            fetch('http://localhost:3000/users/login', {
+            fetch('/users/login', {
                 method: 'POST',
                 body: formData
             }).then((res) => {
@@ -94,7 +94,7 @@
 
                 if (!data.error) {
                     document.cookie = `access_token=${data.token}; max-age=86400`;
-                    return window.location.href = 'http://localhost:3000/home'
+                    return window.location.href = '/home'
                 } else {
                     loginError.textContent = data.error
                 }
@@ -107,7 +107,7 @@
 
             const formData = new FormData(registerForm);
 
-            fetch('http://localhost:3000/user', {
+            fetch('/user', {
                 method: 'POST',
                 body: formData //Send data of form to server
             }).then((res) => {
@@ -116,7 +116,7 @@
 
                 if (!data.error) {
                     document.cookie = `access_token=${data.token}; max-age=86400`;
-                    return window.location.href = 'http://localhost:3000/home'
+                    return window.location.href = '/home'
                 } else {
                     console.log(data.error)
                 }

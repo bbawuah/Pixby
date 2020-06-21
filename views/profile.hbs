@@ -1,11 +1,12 @@
-{{#with user}}
+{{>header}}
+
+<div class="gradient">
+  {{#with likedUser}}
 <div class="fillimage">
   <img src='../img/components/{{imgOld}}' alt="">
 </div>
 {{/with}}
-{{>header}}
-<div class="gradient">
-  {{#with user}}
+  {{#with likedUser}}
   <figure>
     <figcaption class="profilecap">
       <div>

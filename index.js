@@ -56,6 +56,7 @@ app
   .get('/*', error)
   .set('view engine', 'hbs')
   .set('views', 'views')
+  .use(cookieParser())
   .use(express.static('public'))
   .use(express.json()) // gebruikt deze map (public) om html bestanden te serveren
   .use(
@@ -65,9 +66,24 @@ app
   )
   .use(register)
   .use(search)
+<<<<<<< HEAD
   .use(cookieParser());
 
 let roomId = "";
+=======
+  .get('/', index)
+  .get('/register', registerPage)
+  .get('/home', auth, home)
+  .post('/match', auth, match)
+  .post('/profile/:id', auth, profileUser)
+  .get('/editProfile', auth, editProfilePage)
+  .post('/updateProfile', auth, updateProfile)
+  .get('/chat', auth, chat)
+  .get('/chatRoom', auth, chatRoom)
+  .get('/*', error)
+
+let roomId = ''
+>>>>>>> bce4b58e6b67e74a6b7f4952a9191925b6df8c09
 
 
 io.on('connection', (socket) => {

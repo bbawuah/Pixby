@@ -4,14 +4,15 @@
   <div class="greet">
     <h2 id="welcome">Hi, {{user.name}}!</h2>
     <a href="/editProfile">Edit Profile</a>
+    <button id="logout">Logout</button>
   </div>
 
 
   <div id="searchContainer">
     <form id="searchProfession">
       <input type="text" name="term" placeholder="Search profession ..." id="search">
-      </form>
-    </div>
+    </form>
+  </div>
 
 
   <ul class="container">
@@ -46,6 +47,44 @@
     </li>
     {{/each}}
   </ul>
+  <script>
+    const logoutBtn = document.getElementById('logout');
+
+    logoutBtn.addEventListener('click', () => {
+
+      fetch('/users/logout', {
+        method: 'POST',
+      }).then((res) => {
+        return res.json();
+      }).then((data) => {
+
+        document.cookie = "access_token=; max-age=- (any digit); path=/;";
+        return window.location.href = '/'
+      })
+    })
+
+
+    loginButton.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(loginForm);
+
+      fetch('/users/login', {
+        method: 'POST',
+        body: formData
+      }).then((res) => {
+        return res.json()
+      }).then((data) => {
+
+        if (!data.error) {
+          document.cookie = `access_token=${data.token}; max-age=86400`;
+          return window.location.href = '/home'
+        } else {
+          loginError.textContent = data.error
+        }
+      })
+    })
+  </script>
   <script src="/client.js"></script>
 </body>
 

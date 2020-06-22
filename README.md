@@ -1,6 +1,6 @@
 # :baby: Pixby dating-app feature
 
-![mockup](https://github.com/joannlap/Pixby/blob/master/wiki_img/mockups.png)
+![mockup](https://github.com/bbawuah/Pixby/blob/master/wiki_img/mockups%202.0.png)
 
 Hola!
 

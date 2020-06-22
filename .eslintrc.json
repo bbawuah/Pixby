@@ -21,7 +21,7 @@
         "semi": [2, "never"],
         "comma-dangle": ["error"],
         "indent": ["error"],
-        "no-console": ["error"],
+        "no-console": ["off"],
         "arrow-body-style": ["error"],
         "import/newline-after-import": ["error"],
         "prefer-arrow-callback": ["error", {

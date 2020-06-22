@@ -51,6 +51,8 @@ app
   .get('/home', auth, home)
   .post('/match', auth, match)
   .post('/profile/:id', auth, profileUser)
+ .get('/editProfile', auth, editProfilePage)
+  .post('/updateProfile', auth, updateProfile)
   .get('/chat', auth, chat)
   .get('/chatRoom', auth, chatRoom)
   .get('/*', error)
@@ -68,7 +70,6 @@ app
   .use(search)
   .use(cookieParser());
 
-let roomId = "";
 
 
 io.on('connection', (socket) => {
